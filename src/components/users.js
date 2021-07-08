@@ -1,5 +1,4 @@
 import React from 'react'
-import {Link} from "react-router-dom";
 
 const Users = ({ users }) => {
     return (
@@ -14,7 +13,6 @@ const Users = ({ users }) => {
                 </div>
 
             ))}
-            <Link to={{ pathname: `posts`}}>Go posts</Link>
         </div>
     )
 };

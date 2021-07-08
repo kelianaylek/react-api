@@ -1,6 +1,8 @@
 export const routes = {
     DASHBOARD: '/',
 
+    LOGIN: '/login_check',
+
     GET_USERS: '/users',
     GET_USER: '/users/:userId',
     POST_USER: '/users',
