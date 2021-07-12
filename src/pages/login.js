@@ -19,11 +19,13 @@ class Login extends React.Component {
     }
 
     handleSubmit = (event) => {
-        alert('A form was submitted: ' + this.state);
-
         fetch('https://apisymfonykelian.herokuapp.com/api' + routes.LOGIN, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            body: JSON.stringify(this.state)
 
             // We convert the React state to JSON and send it as the POST body
         }).then(function(response) {

@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import {routes} from "../router/RouteConstants";
 import {Link} from "react-router-dom";
+import {Redirect} from "react-router-dom"
 
 class SignUpForm extends React.Component {
     constructor(props) {
@@ -19,8 +20,6 @@ class SignUpForm extends React.Component {
     }
 
     handleSubmit = (event) => {
-        alert('A form was submitted: ' + this.state);
-
         fetch('https://apisymfonykelian.herokuapp.com/api' + routes.POST_USER, {
             method: 'POST',
             // We convert the React state to JSON and send it as the POST body
@@ -33,7 +32,12 @@ class SignUpForm extends React.Component {
         event.preventDefault();
     }
 
+
     render() {
+       // if(this.redirect){
+       //     return <Redirect to="/login" />
+      //  }
+
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
