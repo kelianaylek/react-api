@@ -1,10 +1,8 @@
 import React from 'react'
-import NavBar from "./navbar";
 
 const Group = ({ groups }) => {
     return (
         <div>
-            <NavBar></NavBar>
 
             <center><h1>Group List</h1></center>
             {groups.map((group) => (

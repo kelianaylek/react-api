@@ -1,11 +1,9 @@
 import React from 'react'
-import NavBar from "./navbar";
 
 const Event = ({ events }) => {
     return (
 
         <div>
-            <NavBar></NavBar>
 
             <center><h1>Event List</h1></center>
             {events.map((event) => (

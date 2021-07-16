@@ -1,11 +1,9 @@
 import React from 'react'
-import NavBar from "./navbar";
 import {Link} from "react-router-dom";
 
 const Post = ({ posts }) => {
     return (
         <div>
-            <NavBar></NavBar>
 
             <center><h1>Post List</h1></center>
             {posts.map((post) => (
