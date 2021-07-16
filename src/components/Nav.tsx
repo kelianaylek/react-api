@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const Nav = (props : {name :string}) => {
 
     let menu ;
-    if(props.name === ''){
+    if(props.name === '' || props.name == null){
         menu =  (
             <ul className="navbar-nav me-auto mb-2 mb-md-0">
                 <li className="nav-item">
