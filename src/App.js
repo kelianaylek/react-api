@@ -1,11 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import "./App.css"
-import Login from './pages/Login'
-import Nav from './components/Nav'
+import Login from './pages/Auth/Login'
+import Nav from './components/Navbar/Nav'
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import Home from "./pages/Home"
-import Register from "./pages/Register";
+import Home from "./pages/Home/Home"
+import Register from "./pages/Auth/Register";
 import Cookies from "js-cookie";
+import PostList from "./pages/Post/posts";
+import Post from "./pages/Post/post";
+
 
 function App(){
     const [name, setName] = useState('')
@@ -28,11 +31,15 @@ function App(){
           <BrowserRouter>
                 <div>
                     <Nav name={name}></Nav>
-                    <main className="form-signin">
+
+                    <main>
                         <Switch>
                             <Route path="/" component={() => <Home name={name}/>} exact/>
                             <Route path="/login" component={Login}/>
                             <Route path="/register" component={Register}/>
+                            <Route path="/posts" component={PostList}/>
+                            <Route path={"/post/:postId"} component={Post}/>
+
                         </Switch>
                     </main>
                 </div>

@@ -19,6 +19,9 @@ const Nav = (props : {name :string}) => {
         menu = (
             <ul className="navbar-nav me-auto mb-2 mb-md-0">
                 <li className="nav-item">
+                    <Link to="/posts" className="nav-link active" aria-current="page">Posts</Link>
+                </li>
+                <li className="nav-item">
                     <Link to="#" className="nav-link active" aria-current="page" href="#">{props.name}</Link>
                 </li>
             </ul>

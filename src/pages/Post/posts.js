@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Posts from "../components/posts";
-import {routes} from "../router/RouteConstants";
+import Posts from "../../components/Post/posts";
+import {routes} from "../../router/RouteConstants";
 
 class PostList extends Component {
     state = {
@@ -17,8 +17,6 @@ class PostList extends Component {
     render() {
         return (
             <Posts posts={this.state.posts} />
-
-
         );
     }
 }
