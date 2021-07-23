@@ -3,8 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-
-const CreatePollModal = (props : {post :any, id :number}) => {
+const DeletePollModal = (props : {post :any, id :number}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -16,28 +15,28 @@ const CreatePollModal = (props : {post :any, id :number}) => {
         e.preventDefault()
         const token = Cookies.get('token');
 
-        await fetch('https://apisymfonykelian.herokuapp.com/api/polls/' + props.post.id, {
-            method : 'POST',
+        await fetch('https://apisymfonykelian.herokuapp.com/api/polls/' + props.post.poll.id, {
+            method : 'DELETE',
             headers : {"Authorization" : "Bearer " + token},
         })
         window.location.reload();
     }
 
-    if(id === post.author?.id && post?.poll === null){
+    if(id === post.author?.id && post?.poll !== null){
         return (
             <>
                 <Button variant="primary" onClick={handleShow}>
-                    Add Poll
+                    Remove Poll
                 </Button>
 
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Add a poll to your post</Modal.Title>
+                        <Modal.Title>Remove poll from your post</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Form onSubmit={createPost}>
                             <Button variant="primary" type="submit">
-                                Add
+                                Remove
                             </Button>
                         </Form>
                     </Modal.Body>
@@ -51,4 +50,4 @@ const CreatePollModal = (props : {post :any, id :number}) => {
 
 }
 
-export default CreatePollModal;
+export default DeletePollModal;
