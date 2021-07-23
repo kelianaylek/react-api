@@ -5,6 +5,7 @@ import Poll from "../../components/Poll/poll"
 import Event from "../../components/Event/Event";
 import GetComments from "../../components/Comment/getComments"
 import PostComment from '../../components/Comment/PostComment'
+import CreatePollModal from "../../components/Modals/CreatePollModal";
 
 class Post extends React.Component {
     state = {
@@ -34,6 +35,9 @@ class Post extends React.Component {
                 <PostComment post={this.state.activePost}></PostComment>
 
                 <br/><br/>
+                <CreatePollModal post={this.state.activePost} id={this.props.location.state.id}></CreatePollModal>
+                <br/>
+
                 {this.state.activePost.poll != null &&
                     <Poll poll={this.state.activePost.poll}></Poll>
                 }
