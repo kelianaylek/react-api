@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import {routes} from "../../router/RouteConstants";
 import CreatePollChoiceModal from "../Modals/CreatePollChoiceModal";
 import DeletePollChoiceModal from "../Modals/DeletePollChoiceModal";
+import VoteToPollChoiceButton from './VoteToPollChoiceButton'
 
 class Poll extends React.Component<any, any> {
    state = {
-       poll : this.props.post.poll
+       poll : this.props.post.poll,
+       id : this.props.id
    }
     componentDidMount = async () => {
 
@@ -27,7 +29,10 @@ class Poll extends React.Component<any, any> {
                 {this.state.poll?.pollChoices?.map((pollChoice:any) => (
                     <div className="d-flex justify-content-around" key={pollChoice.id}>
 
-                        <DeletePollChoiceModal poll={this.state.poll} pollChoice={pollChoice}></DeletePollChoiceModal>
+                        {this.state.id === this.props.post.author.id ?
+                            <DeletePollChoiceModal poll={this.state.poll} pollChoice={pollChoice}></DeletePollChoiceModal>
+                            : ""
+                        }
 
                         <p>Id : {pollChoice.id}</p>
                         <p>Title : {pollChoice.title}</p>
@@ -40,13 +45,15 @@ class Poll extends React.Component<any, any> {
 
                         <p>Votes : {pollChoice?.users?.length}</p>
 
-                        <button>Voter</button>
+                        <VoteToPollChoiceButton pollChoice={pollChoice}></VoteToPollChoiceButton>
+
                     </div>
 
                 ))}
-
-                <CreatePollChoiceModal post={this.props.post}></CreatePollChoiceModal>
-
+                {this.state.id === this.props.post.author.id ?
+                    <CreatePollChoiceModal post={this.props.post}></CreatePollChoiceModal>
+                    : ""
+                }
             </div>
         );
     }

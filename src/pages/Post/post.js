@@ -41,7 +41,7 @@ class Post extends React.Component {
                 <DeletePollModal post={this.state.activePost} id={this.props.location.state.id}></DeletePollModal>
 
                 {this.state.activePost.poll != null &&
-                    <Poll post={this.state.activePost}></Poll>
+                    <Poll post={this.state.activePost} id={this.props.location.state.id}></Poll>
                 }
 
                 <br/><br/>
