@@ -6,7 +6,7 @@ import Event from "../../components/Event/Event";
 import GetComments from "../../components/Comment/getComments"
 import PostComment from '../../components/Comment/PostComment'
 
-class Post extends Component {
+class Post extends React.Component {
     state = {
         activePost : []
     }
@@ -20,7 +20,6 @@ class Post extends Component {
                 this.setState({ activePost : data })
             })
             .catch(console.log)
-
     }
     render() {
         return (
@@ -30,7 +29,7 @@ class Post extends Component {
                 <p>Date : {this.state.activePost.publishedAt}</p>
                 <p>Image Link : {this.state.activePost.image}</p>
 
-                <GetComments post={this.state.activePost}></GetComments>
+                <GetComments post={this.state.activePost} id={this.props.location.state.id}></GetComments>
 
                 <PostComment post={this.state.activePost}></PostComment>
 

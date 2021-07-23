@@ -12,6 +12,7 @@ import Post from "./pages/Post/post";
 
 function App(){
     const [name, setName] = useState('')
+    const [id, setId] = useState('')
 
     useEffect(()=>{
         (
@@ -22,6 +23,7 @@ function App(){
                 })
                 const content = await response.json()
                 setName(content.name)
+                setId(content.id)
             }
         )();
     });
@@ -37,7 +39,7 @@ function App(){
                             <Route path="/" component={() => <Home name={name}/>} exact/>
                             <Route path="/login" component={Login}/>
                             <Route path="/register" component={Register}/>
-                            <Route path="/posts" component={PostList}/>
+                            <Route path="/posts" component={() => <PostList id={id}/>}/>
                             <Route path={"/post/:postId"} component={Post}/>
 
                         </Switch>

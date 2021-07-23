@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import Posts from "../../components/Post/posts";
 import {routes} from "../../router/RouteConstants";
 
-class PostList extends Component {
+class PostList extends React.Component<any> {
+
     state = {
-        posts : []
+        posts : [],
     }
     componentDidMount() {
+
         fetch('https://apisymfonykelian.herokuapp.com/api' + routes.GET_POSTS)
             .then(res => res.json())
             .then((data) => {
@@ -16,7 +18,7 @@ class PostList extends Component {
     }
     render() {
         return (
-            <Posts posts={this.state.posts} />
+            <Posts posts={this.state.posts} id={this.props.id}/>
         );
     }
 }
