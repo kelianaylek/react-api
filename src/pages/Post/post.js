@@ -7,6 +7,8 @@ import GetComments from "../../components/Comment/getComments"
 import PostComment from '../../components/Comment/PostComment'
 import CreatePollModal from "../../components/Modals/CreatePollModal";
 import DeletePollModal from "../../components/Modals/DeletePollModal";
+import AddEventToPostModal from "../../components/Modals/AddEventToPostModal";
+import RemoveEventFromPostModal from "../../components/Modals/RemoveEventFromPostModal";
 
 class Post extends React.Component {
     state = {
@@ -45,9 +47,16 @@ class Post extends React.Component {
                 }
 
                 <br/><br/>
+                {this.state.activePost.event === null &&
+                <AddEventToPostModal post={this.state.activePost} event={this.state.activePost.event} id={this.props.location.state.id}></AddEventToPostModal>
+                }
+
+                {this.state.activePost.event !== null &&
+                <RemoveEventFromPostModal post={this.state.activePost} id={this.props.location.state.id}></RemoveEventFromPostModal>
+                }
 
                 {this.state.activePost.event != null &&
-                    <EventInPost event={this.state.activePost.event}></EventInPost>
+                    <EventInPost event={this.state.activePost.event} id={this.props.location.state.id}></EventInPost>
                 }
             </div>
 

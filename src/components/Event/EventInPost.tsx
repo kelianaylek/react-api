@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import {routes} from "../../router/RouteConstants";
+import ParticipateToEvent from "../Modals/ParticipateToEvent";
+import UnParticipateToEvent from "../Modals/UnParticipateToEventModal";
 
 class EventInPost extends React.Component<any, any> {
     state = {
@@ -16,6 +18,7 @@ class EventInPost extends React.Component<any, any> {
             .catch(console.log)
     }
     render() {
+        let participate;
         return (
             <div>
                 <h2>Event : </h2>
@@ -32,6 +35,22 @@ class EventInPost extends React.Component<any, any> {
                 <p>Start : {this.state.event.startDate}</p>
                 <p>End : {this.state.event.endDate}</p>
 
+                {this.state.event?.members?.map((member:any) => {
+                    if(this.props.id !== this.state.event?.owner?.id && member.id === this.props.id){
+                        participate = true;
+                        return(
+                            <UnParticipateToEvent event={this.state.event}></UnParticipateToEvent>
+                        )
+                    }
+                    }
+                )}
+
+                {this.props.id !== this.state.event?.owner?.id && !participate ?
+                    <ParticipateToEvent event={this.state.event}></ParticipateToEvent>
+                    : ""
+                }
+
+                <br/><br/>
             </div>        );
     }
 }

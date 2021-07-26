@@ -2,7 +2,7 @@ import React, {SyntheticEvent, useState, useEffect} from "react";
 import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
-import SearchEvent from "../Event/SearchEvent";
+import SearchEvent from "../Event/SearchBar";
 import UserList from "../Users/UserList";
 
 
