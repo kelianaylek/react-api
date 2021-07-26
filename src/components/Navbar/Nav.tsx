@@ -22,6 +22,9 @@ const Nav = (props : {name :string}) => {
                     <Link to="/posts" className="nav-link active" aria-current="page">Posts</Link>
                 </li>
                 <li className="nav-item">
+                    <Link to="/events" className="nav-link active" aria-current="page">Events</Link>
+                </li>
+                <li className="nav-item">
                     <Link to="#" className="nav-link active" aria-current="page" href="#">{props.name}</Link>
                 </li>
             </ul>

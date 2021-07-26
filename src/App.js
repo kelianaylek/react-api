@@ -8,7 +8,7 @@ import Register from "./pages/Auth/Register";
 import Cookies from "js-cookie";
 import PostList from "./pages/Post/posts";
 import Post from "./pages/Post/post";
-
+import Event from './pages/Event/Event'
 
 function App(){
     const [name, setName] = useState('')
@@ -41,6 +41,8 @@ function App(){
                             <Route path="/register" component={Register}/>
                             <Route path="/posts" component={() => <PostList id={id}/>}/>
                             <Route path={"/post/:postId"} component={Post}/>
+
+                            <Route path="/events" component={() => <Event id={id}/>}/>
 
                         </Switch>
                     </main>

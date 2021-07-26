@@ -1,39 +1,63 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
+import React, {useState} from 'react'
+import {Link} from "react-router-dom";
+import CreateEventModal from "../Modals/CreateEventModal";
+import EditEventModal from "../Modals/EditEventModal";
+import DeleteEventModal from "../Modals/DeleteEventModal";
+import AddMemberToEventModal from "../Modals/AddMemberToEventModal";
+import RemoveMemberFromEventModal from "../Modals/RemoveMemberFromEventModal";
+import {Button} from "react-bootstrap";
+import Cookies from "js-cookie";
 
-class Event extends React.Component<any, any> {
-    state = {
-        event : this.props.event
-    }
-    componentDidMount = async () => {
+const Event = ({ events, id }:any) => {
 
-        fetch('https://apisymfonykelian.herokuapp.com/api/events/' + this.state.event.id)
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({ event : data })
-                console.warn(this.state.event)
-            })
-            .catch(console.log)
-    }
-    render() {
-        return (
-            <div>
-                <h2>Event : </h2>
-                <p>Id : {this.state.event.id}</p>
-                <p>Title : {this.state.event.title}</p>
-                <p>Description : {this.state.event.description}</p>
-                <p>Owner : {this.state.event.owner?.id} - {this.state.event.owner?.name} </p>
-                <p>
-                    Members :
-                    {this.state.event?.members?.map((members:any) => (
-                        <span key={members.id}> User : {members.name} - </span>
-                    ))}
-                </p>
-                <p>Start : {this.state.event.startDate}</p>
-                <p>End : {this.state.event.endDate}</p>
+    return (
+        <div>
+            <h1>Event List</h1>
 
-            </div>        );
-    }
-}
+            <CreateEventModal></CreateEventModal>
 
-export default Event;
+            <div className="d-flex justify-content-around flex-wrap">
+                {events.map((event :any) => {
+                        if(event.owner?.id === id){
+                            return(
+                                <div key={event.id} className="card w-30 mb-4">
+
+                                    <div className="card-body">
+
+                                        <EditEventModal event={event}></EditEventModal>
+                                        <DeleteEventModal event={event}></DeleteEventModal>
+
+                                        <p>Id : {event.id}</p>
+                                        <p>Title : {event.title}</p>
+                                        <p>Description : {event.description}</p>
+                                        <p>Owner : {event.owner?.id} - {event.owner?.name} </p>
+                                        <div>
+                                            Members :
+                                            {event?.members?.map((member:any) => (
+                                                <div className="d-flex" key={member.id}>
+                                                    <p>-{member.name}</p>
+
+                                                    <RemoveMemberFromEventModal event={event} member={member}></RemoveMemberFromEventModal>
+
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <p>Start : {event.startDate}</p>
+                                        <p>End : {event.endDate}</p>
+
+                                        <AddMemberToEventModal event={event} id={id}></AddMemberToEventModal>
+
+                                    </div>
+                                </div>
+
+                            )
+                        }
+                    }
+                )}
+            </div>
+
+        </div>
+    )
+};
+
+export default Event

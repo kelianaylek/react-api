@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {routes} from "../../router/RouteConstants";
 import {Link} from "react-router-dom";
 import Poll from "../../components/Poll/poll"
-import Event from "../../components/Event/Event";
+import EventInPost from "../../components/Event/EventInPost";
 import GetComments from "../../components/Comment/getComments"
 import PostComment from '../../components/Comment/PostComment'
 import CreatePollModal from "../../components/Modals/CreatePollModal";
@@ -47,7 +47,7 @@ class Post extends React.Component {
                 <br/><br/>
 
                 {this.state.activePost.event != null &&
-                    <Event event={this.state.activePost.event}></Event>
+                    <EventInPost event={this.state.activePost.event}></EventInPost>
                 }
             </div>
 
