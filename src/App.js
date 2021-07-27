@@ -9,6 +9,8 @@ import Cookies from "js-cookie";
 import PostList from "./pages/Post/posts";
 import Post from "./pages/Post/post";
 import Event from './pages/Event/Event'
+import GroupList from "./pages/Group/groups";
+import Group from './pages/Group/group'
 
 function App(){
     const [name, setName] = useState('')
@@ -43,6 +45,9 @@ function App(){
                             <Route path={"/post/:postId"} component={Post}/>
 
                             <Route path="/events" component={() => <Event id={id}/>}/>
+                            <Route path="/groups" component={() => <GroupList id={id}/>}/>
+                            <Route path={"/group/:groupId"} component={Group}/>
+
 
                         </Switch>
                     </main>
