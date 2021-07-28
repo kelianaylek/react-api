@@ -12,7 +12,19 @@ import RemoveEventFromPostModal from "../../components/Modals/RemoveEventFromPos
 
 class Post extends React.Component {
     state = {
-        activePost : []
+        activePost : [],
+    }
+    constructor() {
+        super();
+        this.getPost = this.getPost.bind(this);
+
+    }
+
+    getPost(post){
+        this.setState({ activePost : post })
+        console.warn(this.state.activePost)
+        this.forceUpdate()
+
     }
 
     componentDidMount = async () => {
@@ -25,6 +37,7 @@ class Post extends React.Component {
             })
             .catch(console.log)
     }
+
     render() {
         return (
             <div>
@@ -35,7 +48,7 @@ class Post extends React.Component {
 
                 <GetComments post={this.state.activePost} id={this.props.location.state.id}></GetComments>
 
-                <PostComment post={this.state.activePost}></PostComment>
+                <PostComment post={this.state.activePost} getPost={this.getPost}></PostComment>
 
                 <br/><br/>
                 <CreatePollModal post={this.state.activePost} id={this.props.location.state.id}></CreatePollModal>

@@ -21,7 +21,7 @@ class getComments extends React.Component<any, any> {
             <div>
                 <h2>Comments :</h2>
 
-                {this.state.post?.comments?.map((comment:any) => {
+                {this.props.post?.comments?.map((comment:any) => {
 
                     return(
                         <div key={comment.id}>
