@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 import SearchEvent from "../Event/SearchBar";
-import RemoveGroupUsersList from "../Group/RemoveGroupUsersList";
+import GroupUsersList from "../Group/GroupUsersList";
 
 
 const RemoveUserToGroupModal = ({group, id}) => {
@@ -37,12 +37,12 @@ const RemoveUserToGroupModal = ({group, id}) => {
     return (
         <>
             <Button variant="primary" onClick={handleShow}>
-                Remove user
+                Manage users
             </Button>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Remove a user</Modal.Title>
+                    <Modal.Title>Manage user's rights</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -52,7 +52,7 @@ const RemoveUserToGroupModal = ({group, id}) => {
                         onChange={updateInput}
                     />
 
-                    <RemoveGroupUsersList groupUserList={userList} group={group} id={id}/>
+                    <GroupUsersList groupUserList={userList} group={group} id={id}/>
 
                 </Modal.Body>
 
