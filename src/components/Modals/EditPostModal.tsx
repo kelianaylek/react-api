@@ -3,12 +3,13 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const EditPostModal = (props : {post :any}) => {
+const EditPostModal = (props : {post :any, editPost :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const [content, setContent] = useState('');
+    const [post, setPost] = useState('')
 
     const editPost = async (e: SyntheticEvent) =>{
         e.preventDefault()
@@ -20,9 +21,15 @@ const EditPostModal = (props : {post :any}) => {
             body : JSON.stringify({
                 content,
             })
-        })
-        window.location.reload();
+        }).then(res => res.json())
+            .then((data) => {
+                setPost(data)
+                props.editPost(data)
+            })
+            .catch(console.log)
+        handleClose()
     }
+
 
     return (
         <>
@@ -38,7 +45,7 @@ const EditPostModal = (props : {post :any}) => {
                     <Form onSubmit={editPost}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Content</Form.Label>
-                            <Form.Control type="text" placeholder={props.post.content} onChange={e => setContent(e.target.value)}/>
+                            <Form.Control type="text" defaultValue={props.post.content} onChange={e => setContent(e.target.value)}/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

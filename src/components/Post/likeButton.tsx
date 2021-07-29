@@ -15,18 +15,26 @@ class LikeButton extends React.Component<any, any> {
             await fetch('https://apisymfonykelian.herokuapp.com/api/posts/removeLike/' + this.state.post.id, {
                 method : 'PUT',
                 headers : {"Authorization" : "Bearer " + token},
-            })
-            window.location.reload();
+            }).then(res => res.json())
+                .then((data) => {
+                    this.setState({ post : data })
+                })
+                .catch(console.log)
+
+
         }
         else if(isLiked === false){
             await fetch('https://apisymfonykelian.herokuapp.com/api/posts/addLike/' + this.state.post.id, {
                 method : 'PUT',
                 headers : {"Authorization" : "Bearer " + token},
-            })
-            window.location.reload();
+            }).then(res => res.json())
+                .then((data) => {
+                    this.setState({ post : data })
+                })
+                .catch(console.log)
         }
-
     }
+
 
     render() {
         let isLiked = false;
@@ -39,6 +47,7 @@ class LikeButton extends React.Component<any, any> {
                         isLiked = true
                     }
                 })}
+                <h6 className="card-subtitle mb-2 text-muted">Likes : {this.state.post?.likedBy.length}</h6>
 
                 <button onClick={() => this.submit(isLiked)}>{isLiked ? 'Dislike' : 'Like'} </button>
 

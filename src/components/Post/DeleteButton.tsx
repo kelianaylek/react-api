@@ -9,12 +9,22 @@ class DeleteButton extends React.Component<any, any> {
         post : this.props.post,
         id : this.props.id,
     }
+    constructor(props :any) {
+        super(props);
+        this.deletePost = this.deletePost.bind(this);
+    }
+
+    deletePost(post :any){
+        this.setState({ post : post })
+        this.forceUpdate()
+        this.props.deletePost()
+    }
 
     render() {
         let deleteButton;
 
-        if(this.state.post.author.id === this.state.id){
-            deleteButton = <DeletePostModal post={this.state.post}></DeletePostModal>
+        if(this.props.post.author.id === this.props.id){
+            deleteButton = <DeletePostModal deletePost={this.deletePost} post={this.props.post}></DeletePostModal>
         }
         return (
             <div>

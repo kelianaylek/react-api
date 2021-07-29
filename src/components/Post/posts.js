@@ -5,48 +5,72 @@ import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import CreatePostModal from "../Modals/CreatePostModal";
 
-const Post = ({ posts, id }) => {
+class Post extends React.Component {
+    state = {
+        posts : this.props.posts,
+        id : this.props.id
+    }
+    constructor(props) {
+        super(props);
+        this.editPosts = this.editPosts.bind(this);
+        this.deletePost = this.deletePost.bind(this);
 
-    return (
-        <div>
-            <center><h1>Post List</h1></center>
+    }
 
-            <CreatePostModal></CreatePostModal>
+    editPosts(){
+        this.setState({posts : this.props.posts})
+        this.forceUpdate()
+        this.props.updatePosts()
+    }
 
-            <div className="d-flex justify-content-around flex-wrap">
-                {posts.map((post) => (
-                    <div key={post.id} className="card w-30 mb-4">
+    deletePost(){
+        this.setState({posts : this.props.posts})
+        this.forceUpdate()
+        this.props.deletePost()
+    }
 
-                        <EditButton post={post} id={id}></EditButton>
-                        <DeleteButton post={post} id={id}></DeleteButton>
-                        <div className="card-body">
-                            <h5 className="card-title" key={post.id}>Id : {post.id}</h5>
-                            <h6 className="card-subtitle mb-2 text-muted">Content : {post.content}</h6>
-                            <h6 className="card-subtitle mb-2 text-muted">Publié à : {post.publishedAt}</h6>
-                            <h6 className="card-subtitle mb-2 text-muted">Image link : {post.image}</h6>
+    render(){
+        return (
+            <div>
+                <center><h1>Post List</h1></center>
 
-                            <h6 className="card-subtitle mb-2 text-muted">Likes : {post.likedBy.length}</h6>
+                <CreatePostModal></CreatePostModal>
 
-                            <LikeButton post={post} id={id}></LikeButton>
+                <div className="d-flex justify-content-around flex-wrap">
+                    {this.props.posts.map((post) => (
+                        <div key={post.id} className="card w-30 mb-4">
 
-                        </div>
-                        <button>
-                            <Link to={{
-                                pathname: `/post/${post.id}`,
-                                state : {
-                                    post : post.id,
-                                    id : id
+                            <EditButton editPosts={this.editPosts} post={post} id={this.props.id}></EditButton>
+                            <DeleteButton deletePost={this.deletePost} post={post} id={this.props.id}></DeleteButton>
+                            <div className="card-body">
+                                <h5 className="card-title" key={post.id}>Id : {post.id}</h5>
+                                <h6 className="card-subtitle mb-2 text-muted">Content : {post.content}</h6>
+                                <h6 className="card-subtitle mb-2 text-muted">Publié à : {post.publishedAt}</h6>
+                                <h6 className="card-subtitle mb-2 text-muted">Image link : {post.image}</h6>
+
+
+                                <LikeButton post={post} id={this.props.id}></LikeButton>
+
+                            </div>
+                            <button>
+                                <Link to={{
+                                    pathname: `/post/${post.id}`,
+                                    state : {
+                                        post : post.id,
+                                        id : this.props.id
                                     }
                                 }}
-                            >
-                            View Post
-                            </Link>
-                        </button>
-                    </div>
-                ))}
+                                >
+                                    View Post
+                                </Link>
+                            </button>
+                        </div>
+                    ))}
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
+
 };
 
 export default Post

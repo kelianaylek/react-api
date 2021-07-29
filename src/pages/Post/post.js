@@ -16,15 +16,13 @@ class Post extends React.Component {
     }
     constructor() {
         super();
-        this.getPost = this.getPost.bind(this);
-
+        this.getPost = this.getPost.bind(this)
     }
 
     getPost(post){
         this.setState({ activePost : post })
         console.warn(this.state.activePost)
         this.forceUpdate()
-
     }
 
     componentDidMount = async () => {
