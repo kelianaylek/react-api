@@ -16,25 +16,29 @@ class Post extends React.Component {
         this.deletePost = this.deletePost.bind(this);
 
     }
-
     editPosts(){
         this.setState({posts : this.props.posts})
         this.forceUpdate()
         this.props.updatePosts()
     }
-
     deletePost(){
         this.setState({posts : this.props.posts})
         this.forceUpdate()
         this.props.deletePost()
     }
+    createPost(){
+        this.setState({posts : this.props.posts})
+        this.forceUpdate()
+        this.props.createPost()
+    }
+
 
     render(){
         return (
             <div>
                 <center><h1>Post List</h1></center>
 
-                <CreatePostModal></CreatePostModal>
+                <CreatePostModal createPost={this.props.createPost}></CreatePostModal>
 
                 <div className="d-flex justify-content-around flex-wrap">
                     {this.props.posts.map((post) => (

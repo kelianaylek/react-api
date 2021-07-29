@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const CreatePostModal = () => {
+const CreatePostModal = (props : {createPost :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -23,7 +23,8 @@ const CreatePostModal = () => {
                 image
             })
         })
-        window.location.reload();
+        props.createPost()
+        handleClose()
     }
 
     return (

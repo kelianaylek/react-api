@@ -10,6 +10,7 @@ class PostList extends React.Component<any> {
         super(props);
         this.updatePosts = this.updatePosts.bind(this);
         this.deletePost = this.updatePosts.bind(this);
+        this.createPost = this.createPost.bind(this);
     }
     getPosts(){
         fetch('https://apisymfonykelian.herokuapp.com/api' + routes.GET_POSTS)
@@ -26,13 +27,17 @@ class PostList extends React.Component<any> {
     updatePosts(){
         this.getPosts()
     }
+    createPost(){
+        this.getPosts()
+    }
+
     componentDidMount() {
         this.getPosts()
     }
 
     render() {
         return (
-            <Posts deletePost={this.deletePost} updatePosts={this.updatePosts} posts={this.state.posts} id={this.props.id}/>
+            <Posts createPost={this.createPost} deletePost={this.deletePost} updatePosts={this.updatePosts} posts={this.state.posts} id={this.props.id}/>
         );
     }
 }

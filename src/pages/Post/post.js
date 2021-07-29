@@ -18,7 +18,6 @@ class Post extends React.Component {
         super();
         this.getPost = this.getPost.bind(this)
     }
-
     getPost(post){
         this.setState({ activePost : post })
         console.warn(this.state.activePost)
