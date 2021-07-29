@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
 
-const CreatePollModal = (props : {post :any, id :number}) => {
+const CreatePollModal = (props : {post :any, id :number, refreshPost :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -20,7 +20,8 @@ const CreatePollModal = (props : {post :any, id :number}) => {
             method : 'POST',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
+        props.refreshPost(props.post.id)
+        handleClose()
     }
 
     if(id === post.author?.id && post?.poll === null){

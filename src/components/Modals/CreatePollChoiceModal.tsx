@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const CreatePollChoiceModal = (props : {post :any}) => {
+const CreatePollChoiceModal = (props : {post :any, refreshPoll :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -23,7 +23,8 @@ const CreatePollChoiceModal = (props : {post :any}) => {
                 title,
             })
         })
-        window.location.reload();
+        props.refreshPoll(props.post.poll.id)
+        handleClose()
     }
 
     return (

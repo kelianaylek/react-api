@@ -17,22 +17,26 @@ class Post extends React.Component {
     constructor() {
         super();
         this.getPost = this.getPost.bind(this)
+        this.refreshPost = this.refreshPost.bind(this)
     }
     getPost(post){
         this.setState({ activePost : post })
         console.warn(this.state.activePost)
         this.forceUpdate()
     }
-
-    componentDidMount = async () => {
-        const postId = this.props.location.state.post;
-
+    refreshPost(postId){
         fetch('https://apisymfonykelian.herokuapp.com/api/posts/' + postId)
             .then(res => res.json())
             .then((data) => {
                 this.setState({ activePost : data })
             })
             .catch(console.log)
+
+    }
+
+    componentDidMount = async () => {
+        const postId = this.props.location.state.post;
+        this.refreshPost(postId)
     }
 
     render() {
@@ -48,9 +52,9 @@ class Post extends React.Component {
                 <PostComment post={this.state.activePost} getPost={this.getPost}></PostComment>
 
                 <br/><br/>
-                <CreatePollModal post={this.state.activePost} id={this.props.location.state.id}></CreatePollModal>
+                <CreatePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></CreatePollModal>
                 <br/>
-                <DeletePollModal post={this.state.activePost} id={this.props.location.state.id}></DeletePollModal>
+                <DeletePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></DeletePollModal>
 
                 {this.state.activePost.poll != null &&
                     <Poll post={this.state.activePost} id={this.props.location.state.id}></Poll>

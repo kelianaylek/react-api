@@ -9,15 +9,24 @@ class Poll extends React.Component<any, any> {
        poll : this.props.post.poll,
        id : this.props.id
    }
-    componentDidMount = async () => {
-
-        fetch('https://apisymfonykelian.herokuapp.com/api/polls/' + this.state.poll.id)
-            .then(res => res.json())
-            .then((data) => {
-                this.setState({ poll : data })
-            })
-            .catch(console.log)
+    constructor(props :any) {
+        super(props);
+        this.refreshPoll = this.refreshPoll.bind(this)
     }
+
+   refreshPoll(pollId :any){
+       fetch('https://apisymfonykelian.herokuapp.com/api/polls/' + pollId)
+           .then(res => res.json())
+           .then((data) => {
+               this.setState({ poll : data })
+           })
+           .catch(console.log)
+   }
+    componentDidMount = async () => {
+       this.refreshPoll(this.state.poll.id)
+    }
+
+
     render() {
         return (
             <div>
@@ -30,7 +39,7 @@ class Poll extends React.Component<any, any> {
                     <div className="d-flex justify-content-around" key={pollChoice.id}>
 
                         {this.state.id === this.props.post.author.id ?
-                            <DeletePollChoiceModal poll={this.state.poll} pollChoice={pollChoice}></DeletePollChoiceModal>
+                            <DeletePollChoiceModal refreshPoll={this.refreshPoll} poll={this.state.poll} pollChoice={pollChoice}></DeletePollChoiceModal>
                             : ""
                         }
 
@@ -45,13 +54,13 @@ class Poll extends React.Component<any, any> {
 
                         <p>Votes : {pollChoice?.users?.length}</p>
 
-                        <VoteToPollChoiceButton pollChoice={pollChoice}></VoteToPollChoiceButton>
+                        <VoteToPollChoiceButton poll={this.state.poll} refreshPoll={this.refreshPoll} pollChoice={pollChoice}></VoteToPollChoiceButton>
 
                     </div>
 
                 ))}
                 {this.state.id === this.props.post.author.id ?
-                    <CreatePollChoiceModal post={this.props.post}></CreatePollChoiceModal>
+                    <CreatePollChoiceModal refreshPoll={this.refreshPoll} post={this.props.post}></CreatePollChoiceModal>
                     : ""
                 }
             </div>

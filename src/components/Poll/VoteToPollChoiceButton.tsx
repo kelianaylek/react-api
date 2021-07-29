@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const VoteToPollChoiceButton = (props : {pollChoice : any}) => {;
+const VoteToPollChoiceButton = (props : {pollChoice : any, refreshPoll :any, poll :any}) => {;
 
     const voteToPollChoice = async (e: SyntheticEvent) =>{
         e.preventDefault()
@@ -13,7 +13,7 @@ const VoteToPollChoiceButton = (props : {pollChoice : any}) => {;
             method : 'PUT',
             headers : {"Content-Type" : "application/json", "Authorization" : "Bearer " + token},
         })
-        window.location.reload();
+        props.refreshPoll(props.poll.id)
     }
 
     return (

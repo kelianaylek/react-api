@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const DeletePollModal = (props : {post :any, id :number}) => {
+const DeletePollModal = (props : {post :any, id :number, refreshPost :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -19,7 +19,8 @@ const DeletePollModal = (props : {post :any, id :number}) => {
             method : 'DELETE',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
+        props.refreshPost(props.post.id)
+        handleClose()
     }
 
     if(id === post.author?.id && post?.poll !== null){
