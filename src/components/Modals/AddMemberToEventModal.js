@@ -6,7 +6,7 @@ import SearchEvent from "../Event/SearchBar";
 import UserList from "../Users/UserList";
 
 
-const AddMemberToEventModal = ({event, id}) => {
+const AddMemberToEventModal = ({event, id, refreshEvent}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,19 +17,23 @@ const AddMemberToEventModal = ({event, id}) => {
     const [userList, setUserList] = useState();
 
     const fetchData = async () => {
-        return await fetch('https://apisymfonykelian.herokuapp.com/api/users')
+        await fetch('https://apisymfonykelian.herokuapp.com/api/users')
             .then(response => response.json())
             .then(data => {
                 setUserList(data)
                 setUserListDefault(data)
-            });}
-
+            })
+    ;}
     const updateInput = async (input) => {
         const filtered = userListDefault?.filter((user) => {
             return user.name.toLowerCase().includes(input.toLowerCase())
         })
         setInput(input);
         setUserList(filtered);
+    }
+    const refreshEventAddMember = () => {
+        refreshEvent()
+        handleClose()
     }
 
     useEffect( () => {fetchData()},[]);
@@ -52,7 +56,7 @@ const AddMemberToEventModal = ({event, id}) => {
                         onChange={updateInput}
                     />
 
-                    <UserList userList={userList} event={event} id={id}/>
+                    <UserList refreshEventAddMember={refreshEventAddMember} userList={userList} event={event} id={id}/>
 
                 </Modal.Body>
 

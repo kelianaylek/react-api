@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const CreateEventModal = () => {
+const CreateEventModal = (props : {refreshEvent :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -27,7 +27,8 @@ const CreateEventModal = () => {
                 endDate
             })
         })
-        window.location.reload();
+        props.refreshEvent()
+        handleClose()
     }
 
     return (

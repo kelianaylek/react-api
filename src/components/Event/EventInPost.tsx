@@ -7,8 +7,11 @@ class EventInPost extends React.Component<any, any> {
     state = {
         event : this.props.event
     }
-    componentDidMount = async () => {
-
+    constructor(props :any) {
+        super(props);
+        this.refreshEvents = this.refreshEvents.bind(this)
+    }
+    refreshEvents(){
         fetch('https://apisymfonykelian.herokuapp.com/api/events/' + this.state.event.id)
             .then(res => res.json())
             .then((data) => {
@@ -16,6 +19,9 @@ class EventInPost extends React.Component<any, any> {
                 console.warn(this.state.event)
             })
             .catch(console.log)
+    }
+    componentDidMount = async () => {
+        this.refreshEvents()
     }
     render() {
         let participate;
@@ -39,14 +45,14 @@ class EventInPost extends React.Component<any, any> {
                     if(this.props.id !== this.state.event?.owner?.id && member.id === this.props.id){
                         participate = true;
                         return(
-                            <UnParticipateToEvent event={this.state.event}></UnParticipateToEvent>
+                            <UnParticipateToEvent refreshEvent={this.refreshEvents} event={this.state.event}></UnParticipateToEvent>
                         )
                     }
                     }
                 )}
 
                 {this.props.id !== this.state.event?.owner?.id && !participate ?
-                    <ParticipateToEvent event={this.state.event}></ParticipateToEvent>
+                    <ParticipateToEvent refreshEvent={this.refreshEvents} event={this.state.event}></ParticipateToEvent>
                     : ""
                 }
 

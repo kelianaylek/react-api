@@ -9,13 +9,17 @@ import UnParticipateToEvent from "../Modals/UnParticipateToEventModal"
 import {Button} from "react-bootstrap";
 import Cookies from "js-cookie";
 
-const Event = ({ events, id }:any) => {
+const Event = ({ events, id, refreshEvents }:any) => {
+
+    const refreshEvent = () => {
+        refreshEvents()
+    }
 
     return (
         <div>
             <h1>Event List</h1>
 
-            <CreateEventModal></CreateEventModal>
+            <CreateEventModal refreshEvent={refreshEvent}></CreateEventModal>
 
             <h3>My events :</h3>
             <div className="d-flex justify-content-around flex-wrap">
@@ -24,8 +28,8 @@ const Event = ({ events, id }:any) => {
                             return(
                                 <div key={event.id} className="card w-30 mb-4">
                                     <div className="card-body">
-                                        <EditEventModal event={event}></EditEventModal>
-                                        <DeleteEventModal event={event}></DeleteEventModal>
+                                        <EditEventModal refreshEvent={refreshEvent} event={event}></EditEventModal>
+                                        <DeleteEventModal refreshEvent={refreshEvent} event={event}></DeleteEventModal>
 
                                         <p>Id : {event.id}</p>
                                         <p>Title : {event.title}</p>
@@ -37,7 +41,7 @@ const Event = ({ events, id }:any) => {
                                                 <div className="d-flex" key={member.id}>
                                                     <p>-{member.name}</p>
 
-                                                    <RemoveMemberFromEventModal event={event} member={member}></RemoveMemberFromEventModal>
+                                                    <RemoveMemberFromEventModal refreshEvent={refreshEvent} event={event} member={member}></RemoveMemberFromEventModal>
 
                                                 </div>
                                             ))}
@@ -45,7 +49,7 @@ const Event = ({ events, id }:any) => {
                                         <p>Start : {event.startDate}</p>
                                         <p>End : {event.endDate}</p>
 
-                                        <AddMemberToEventModal event={event} id={id}></AddMemberToEventModal>
+                                        <AddMemberToEventModal refreshEvent={refreshEvent} event={event} id={id}></AddMemberToEventModal>
 
                                     </div>
                                 </div>
@@ -81,7 +85,7 @@ const Event = ({ events, id }:any) => {
                                                             </div>
                                                             <p>Start : {event.startDate}</p>
                                                             <p>End : {event.endDate}</p>
-                                                            <UnParticipateToEvent event={event}></UnParticipateToEvent>
+                                                            <UnParticipateToEvent refreshEvent={refreshEvent} event={event}></UnParticipateToEvent>
                                                         </div>
                                                     </div>
                                                 </div>

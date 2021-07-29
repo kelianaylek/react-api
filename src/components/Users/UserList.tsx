@@ -2,7 +2,7 @@ import React, {SyntheticEvent} from 'react';
 import Cookies from "js-cookie";
 import {Button} from "react-bootstrap";
 
-const UserList = ({userList=[], event, id}:any) => {
+const UserList = ({userList=[], event, id, refreshEventAddMember}:any) => {
 
     const addMember = async (userId: string, eventId: string) =>{
         const token = Cookies.get('token');
@@ -11,7 +11,7 @@ const UserList = ({userList=[], event, id}:any) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
+        refreshEventAddMember()
     }
 
 

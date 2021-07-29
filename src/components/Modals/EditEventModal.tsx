@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 import moment from 'moment'
 
-const EditEventModal = (props : {event :any}) => {
+const EditEventModal = (props : {event :any, refreshEvent :any}, ) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -28,7 +28,8 @@ const EditEventModal = (props : {event :any}) => {
                 endDate
             })
         })
-        window.location.reload();
+        props.refreshEvent()
+        handleClose()
     }
 
     return (
@@ -45,16 +46,16 @@ const EditEventModal = (props : {event :any}) => {
                     <Form onSubmit={editEvent}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder={props.event.title} onChange={e => setTitle(e.target.value)}/>
+                            <Form.Control type="text" defaultValue={props.event.title} onChange={e => setTitle(e.target.value)}/>
 
                             <Form.Label>Description</Form.Label>
-                            <Form.Control type="text" placeholder={props.event.description} onChange={e => setDescription(e.target.value)}/>
+                            <Form.Control type="text" defaultValue={props.event.description} onChange={e => setDescription(e.target.value)}/>
 
                             <Form.Label>Start</Form.Label>
                             <Form.Control type="date" defaultValue={moment(props.event.startDate).format('DD/MM/YYYY')} onChange={e => setStartDate(e.target.value)}/>
 
                             <Form.Label>End</Form.Label>
-                            <Form.Control type="date" placeholder={props.event.endDate} onChange={e => setEndDate(e.target.value)}/>
+                            <Form.Control type="date" defaultValue={props.event.endDate} onChange={e => setEndDate(e.target.value)}/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const UnParticipateToEvent = (props : {event :any}) => {
+const UnParticipateToEvent = (props : {event :any, refreshEvent :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,8 +17,8 @@ const UnParticipateToEvent = (props : {event :any}) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
-
+        props.refreshEvent()
+        handleClose()
     }
 
     return (

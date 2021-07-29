@@ -7,8 +7,11 @@ class EventList extends React.Component<any> {
     state = {
         events : [],
     }
-    componentDidMount() {
-
+    constructor(props :any) {
+        super(props);
+        this.refreshEvents = this.refreshEvents.bind(this)
+    }
+    refreshEvents(){
         fetch('https://apisymfonykelian.herokuapp.com/api/events')
             .then(res => res.json())
             .then((data) => {
@@ -16,9 +19,12 @@ class EventList extends React.Component<any> {
             })
             .catch(console.log)
     }
+    componentDidMount() {
+        this.refreshEvents()
+    }
     render() {
         return (
-            <Event events={this.state.events} id={this.props.id}/>
+            <Event refreshEvents={this.refreshEvents} events={this.state.events} id={this.props.id}/>
         );
     }
 }
