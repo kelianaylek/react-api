@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const DeleteCommentModal = (props : {comment :any, id :any}) => {
+const DeleteCommentModal = (props : {comment :any, id :any, refreshPost :any, post :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,7 +17,8 @@ const DeleteCommentModal = (props : {comment :any, id :any}) => {
             method : 'DELETE',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
+        props.refreshPost(props.post.id)
+        handleClose()
     }
 
     return (

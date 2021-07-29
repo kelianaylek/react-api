@@ -47,7 +47,7 @@ class Post extends React.Component {
                 <p>Date : {this.state.activePost.publishedAt}</p>
                 <p>Image Link : {this.state.activePost.image}</p>
 
-                <GetComments post={this.state.activePost} id={this.props.location.state.id}></GetComments>
+                <GetComments refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></GetComments>
 
                 <PostComment post={this.state.activePost} getPost={this.getPost}></PostComment>
 
