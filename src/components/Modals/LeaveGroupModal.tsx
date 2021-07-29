@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const LeaveGroupModal = (props : {group :any}) => {
+const LeaveGroupModal = (props : {group :any, refreshGroup :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);

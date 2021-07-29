@@ -28,7 +28,7 @@ const Nav = (props : {name :string}) => {
                     <Link to="/groups" className="nav-link active" aria-current="page">Groups</Link>
                 </li>
                 <li className="nav-item">
-                    <Link to="#" className="nav-link active" aria-current="page" href="#">{props.name}</Link>
+                    <p className="nav-link active">{props.name}</p>
                 </li>
             </ul>
         )

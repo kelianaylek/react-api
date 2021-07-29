@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import {Button} from "react-bootstrap";
 import {forEach} from "react-bootstrap/ElementChildren";
 
-const AddGroupUsersList = ({groupUserList=[], group, id}:any) => {
+const AddGroupUsersList = ({groupUserList=[], group, id, refreshGroupAddUser}:any) => {
 
     const addMember = async (groupId: string, userId: string) =>{
         const token = Cookies.get('token');
@@ -12,8 +12,7 @@ const AddGroupUsersList = ({groupUserList=[], group, id}:any) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
-
+        refreshGroupAddUser(groupId)
     }
 
     let users = groupUserList;

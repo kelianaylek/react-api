@@ -12,11 +12,14 @@ import Event from './pages/Event/Event'
 import GroupList from "./pages/Group/groups";
 import Group from './pages/Group/group'
 
-function App(){
-    const [name, setName] = useState('')
-    const [id, setId] = useState('')
+class App extends React.Component{
+    state = {
+        name : '',
+        id : ''
+    }
 
-    useEffect(()=>{
+    componentDidMount()
+    {
         (
             async () => {
                 const response = await fetch('https://apisymfonykelian.herokuapp.com/api/users/connected', {
@@ -24,38 +27,42 @@ function App(){
                     credentials : 'include'
                 })
                 const content = await response.json()
-                setName(content.name)
-                setId(content.id)
+                this.setState({name : content.name})
+                this.setState({id : content.id})
+
             }
         )();
-    });
+    }
 
-  return (
-      <div className="App">
-          <BrowserRouter>
+render(){
+    return (
+        <div className="App">
+            <BrowserRouter>
                 <div>
-                    <Nav name={name}></Nav>
+                    <Nav name={this.state.name}></Nav>
 
                     <main>
                         <Switch>
-                            <Route path="/" component={() => <Home name={name}/>} exact/>
+                            <Route path="/" component={() => <Home name={this.state.name}/>} exact/>
                             <Route path="/login" component={Login}/>
                             <Route path="/register" component={Register}/>
-                            <Route path="/posts" component={() => <PostList id={id}/>}/>
+                            <Route path="/posts" component={() => <PostList id={this.state.id}/>}/>
                             <Route path={"/post/:postId"} component={Post}/>
 
-                            <Route path="/events" component={() => <Event id={id}/>}/>
-                            <Route path="/groups" component={() => <GroupList id={id}/>}/>
+                            <Route path="/events" component={() => <Event id={this.state.id}/>}/>
+                            <Route path="/groups" component={() => <GroupList id={this.state.id}/>}/>
                             <Route path={"/group/:groupId"} component={Group}/>
 
 
                         </Switch>
                     </main>
                 </div>
-          </BrowserRouter>
+            </BrowserRouter>
 
-      </div>
-      )
+        </div>
+    )
+
+}
 
 }
 

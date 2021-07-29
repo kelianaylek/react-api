@@ -2,7 +2,7 @@ import React, {SyntheticEvent, useState} from "react";
 import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 
-const SendMessageToGroup = (props : {group :any}) => {
+const SendMessageToGroup = (props : {group :any, refreshGroup :any}) => {
 
     const [content, setContent] = useState('');
 
@@ -17,8 +17,8 @@ const SendMessageToGroup = (props : {group :any}) => {
                 content,
             })
         })
-        window.location.reload();
-
+        setContent('')
+        props.refreshGroup(props.group.id)
     }
 
 
@@ -27,7 +27,7 @@ const SendMessageToGroup = (props : {group :any}) => {
             <p className="fw-normal">Send message</p>
 
             <div className="form-floating">
-                <input type="text" className="form-control"  placeholder="Message" required onChange={e => setContent(e.target.value)}/>
+                <input type="text" className="form-control" value={content} placeholder="Message" required onChange={e => setContent(e.target.value)}/>
             </div>
 
             <button className="w-100 btn btn-lg btn-primary" type="submit">Send</button>

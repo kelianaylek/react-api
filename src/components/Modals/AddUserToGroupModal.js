@@ -6,7 +6,7 @@ import SearchEvent from "../Event/SearchBar";
 import AddGroupUsersList from "../Group/AddGroupUsersList";
 
 
-const AddUserToGroupModal = ({group, id}) => {
+const AddUserToGroupModal = ({group, id, refreshGroup}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -23,13 +23,15 @@ const AddUserToGroupModal = ({group, id}) => {
                 setUserList(data)
                 setUserListDefault(data)
             });}
-
     const updateInput = async (input) => {
         const filtered = userListDefault?.filter((user) => {
             return user.name.toLowerCase().includes(input.toLowerCase())
         })
         setInput(input);
         setUserList(filtered);
+    }
+    const refreshGroupAddUser = (groupId) =>{
+        refreshGroup(groupId)
     }
 
     useEffect( () => {fetchData()},[]);
@@ -52,7 +54,7 @@ const AddUserToGroupModal = ({group, id}) => {
                         onChange={updateInput}
                     />
 
-                    <AddGroupUsersList groupUserList={userList} group={group} id={id}/>
+                    <AddGroupUsersList refreshGroupAddUser={refreshGroupAddUser} groupUserList={userList} group={group} id={id}/>
 
                 </Modal.Body>
 

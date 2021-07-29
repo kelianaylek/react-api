@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const EditMessageModal = (props : {message :any}) => {
+const EditMessageModal = (props : {message :any, refreshGroup :any, group :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -21,11 +21,9 @@ const EditMessageModal = (props : {message :any}) => {
                 content,
             })
         })
-        window.location.reload();
-
+        props.refreshGroup(props.group.id)
+        handleClose()
     }
-
-
 
     return (
         <>

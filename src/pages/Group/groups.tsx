@@ -7,8 +7,11 @@ class GroupList extends React.Component<any> {
     state = {
         groups : [],
     }
-    componentDidMount() {
-
+    constructor(props :any) {
+        super(props);
+        this.refreshGroups = this.refreshGroups.bind(this)
+    }
+    refreshGroups(){
         fetch('https://apisymfonykelian.herokuapp.com/api/groups')
             .then(res => res.json())
             .then((data) => {
@@ -16,9 +19,13 @@ class GroupList extends React.Component<any> {
             })
             .catch(console.log)
     }
+
+    componentDidMount() {
+        this.refreshGroups()
+    }
     render() {
         return (
-            <Groups groups={this.state.groups} id={this.props.id}/>
+            <Groups refreshGroups={this.refreshGroups} groups={this.state.groups} id={this.props.id}/>
         );
     }
 }

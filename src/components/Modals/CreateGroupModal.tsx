@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const CreateGroupModal = () => {
+const CreateGroupModal = (props : {refreshGroups :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,7 +17,8 @@ const CreateGroupModal = () => {
             method : 'POST',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
+        props.refreshGroups()
+        handleClose()
     }
 
     return (

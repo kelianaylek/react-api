@@ -2,13 +2,13 @@ import React, {useState} from 'react'
 import {Link} from "react-router-dom";
 import CreateGroupModal from "../../components/Modals/CreateGroupModal"
 
-const Groups = ({ groups, id }: any) => {
+const Groups = ({ groups, id, refreshGroups }: any) => {
 
     return (
         <div>
             <h1>Group List</h1>
 
-            <CreateGroupModal></CreateGroupModal>
+            <CreateGroupModal refreshGroups={refreshGroups}></CreateGroupModal>
 
             <div className="d-flex justify-content-around flex-wrap">
                 {groups.map((group :any) => {

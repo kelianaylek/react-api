@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const DeleteMessageModal = (props : {message :any, group :any}) => {
+const DeleteMessageModal = (props : {message :any, group :any, refreshGroup :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,8 +17,8 @@ const DeleteMessageModal = (props : {message :any, group :any}) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
-
+        props.refreshGroup(props.group.id)
+        handleClose()
     }
 
     return (

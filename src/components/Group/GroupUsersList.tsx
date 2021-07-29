@@ -2,7 +2,7 @@ import React, {SyntheticEvent} from 'react';
 import Cookies from "js-cookie";
 import {Button} from "react-bootstrap";
 
-const GroupUsersList = ({groupUserList=[], group, id}:any) => {
+const GroupUsersList = ({groupUserList=[], group, id, refreshGroupManageUsers, handleShow}:any) => {
 
     const removeUser = async (groupId: string, userId: string) =>{
         const token = Cookies.get('token');
@@ -11,6 +11,8 @@ const GroupUsersList = ({groupUserList=[], group, id}:any) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
+        refreshGroupManageUsers(groupId)
+        handleShow()
     }
     const addAdmin = async (groupId: string, userId: string) =>{
         const token = Cookies.get('token');
@@ -19,8 +21,8 @@ const GroupUsersList = ({groupUserList=[], group, id}:any) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
-
+        refreshGroupManageUsers(groupId)
+        handleShow()
     }
     const demoteAdmin = async (groupId: string, userId: string) =>{
         const token = Cookies.get('token');
@@ -29,7 +31,8 @@ const GroupUsersList = ({groupUserList=[], group, id}:any) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
+        refreshGroupManageUsers(groupId)
+        handleShow()
     }
 
     let usersInGroup = group.users;

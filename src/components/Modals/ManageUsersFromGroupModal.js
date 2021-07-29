@@ -6,15 +6,17 @@ import SearchEvent from "../Event/SearchBar";
 import GroupUsersList from "../Group/GroupUsersList";
 
 
-const RemoveUserToGroupModal = ({group, id}) => {
+const RemoveUserToGroupModal = ({group, id, refreshGroup}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-    const [input, setInput] = useState('');
     const [userListDefault, setUserListDefault] = useState();
     const [userList, setUserList] = useState();
+
+    const refreshGroupManageUsers = (groupId) => {
+        refreshGroup(groupId)
+    }
 
     const fetchData = async () => {
         return await fetch('https://apisymfonykelian.herokuapp.com/api/users')
@@ -23,14 +25,6 @@ const RemoveUserToGroupModal = ({group, id}) => {
                 setUserList(data)
                 setUserListDefault(data)
             });}
-
-    const updateInput = async (input) => {
-        const filtered = userListDefault?.filter((user) => {
-            return user.name.toLowerCase().includes(input.toLowerCase())
-        })
-        setInput(input);
-        setUserList(filtered);
-    }
 
     useEffect( () => {fetchData()},[]);
 
@@ -47,12 +41,8 @@ const RemoveUserToGroupModal = ({group, id}) => {
                 <Modal.Body>
 
                     <h1>User List</h1>
-                    <SearchEvent
-                        input={input}
-                        onChange={updateInput}
-                    />
 
-                    <GroupUsersList groupUserList={userList} group={group} id={id}/>
+                    <GroupUsersList handleShow={handleShow} refreshGroupManageUsers={refreshGroupManageUsers} groupUserList={userList} group={group} id={id}/>
 
                 </Modal.Body>
 

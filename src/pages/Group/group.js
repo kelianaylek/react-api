@@ -14,16 +14,21 @@ class Group extends React.Component {
     state = {
         group : []
     }
-
-    componentDidMount = async () => {
-        const groupId = this.props.location.state.group;
-
+    constructor(props) {
+        super(props);
+        this.refreshGroup = this.refreshGroup.bind(this)
+    }
+    refreshGroup(groupId){
         fetch('https://apisymfonykelian.herokuapp.com/api/groups/' + groupId)
             .then(res => res.json())
             .then((data) => {
                 this.setState({ group : data })
             })
             .catch(console.log)
+    }
+    componentDidMount = async () => {
+        const groupId = this.props.location.state.group;
+        this.refreshGroup(groupId)
     }
 
     render() {
@@ -60,15 +65,15 @@ class Group extends React.Component {
                     if(this.props.location.state.id === admin.id){
                         return (
                             <>
-                                <EditGroupModal group={this.state.group} ></EditGroupModal>
+                                <EditGroupModal refreshGroup={this.refreshGroup} group={this.state.group} ></EditGroupModal>
 
                                 <DeleteGroupModal group={this.state.group}></DeleteGroupModal>
-                                <RemoveUserFromGroupModal group={this.state.group} id={this.props.location.state.id}></RemoveUserFromGroupModal>
+                                <RemoveUserFromGroupModal refreshGroup={this.refreshGroup} group={this.state.group} id={this.props.location.state.id}></RemoveUserFromGroupModal>
                             </>
                         )
                     }
                 }) }
-                <AddUserToGroupModal group={this.state.group} id={this.props.location.state.id}></AddUserToGroupModal>
+                <AddUserToGroupModal refreshGroup={this.refreshGroup} group={this.state.group} id={this.props.location.state.id}></AddUserToGroupModal>
 
                 <div>
                     <h2>Messages :</h2>
@@ -79,8 +84,8 @@ class Group extends React.Component {
                                     <p>{message.id} - {message.content} - {message.author.name}</p>
                                     {this.props.location.state.id === message.author.id ?
                                         <div>
-                                            <EditMessageModal message={message}></EditMessageModal>
-                                            <DeleteMessage message={message} group={this.state.group}></DeleteMessage>
+                                            <EditMessageModal group={this.state.group} refreshGroup={this.refreshGroup} message={message}></EditMessageModal>
+                                            <DeleteMessage group={this.state.group} refreshGroup={this.refreshGroup} message={message}></DeleteMessage>
                                         </div> : null}
                                 </div>
 
@@ -89,7 +94,7 @@ class Group extends React.Component {
                     })}
                 </div>
 
-                <SendMessageToGroup group={this.state.group}></SendMessageToGroup>
+                <SendMessageToGroup refreshGroup={this.refreshGroup} group={this.state.group}></SendMessageToGroup>
 
 
             </div>
