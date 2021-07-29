@@ -62,11 +62,11 @@ class Post extends React.Component {
 
                 <br/><br/>
                 {this.state.activePost.event === null &&
-                <AddEventToPostModal post={this.state.activePost} event={this.state.activePost.event} id={this.props.location.state.id}></AddEventToPostModal>
+                <AddEventToPostModal refreshPost={this.refreshPost} post={this.state.activePost} event={this.state.activePost.event} id={this.props.location.state.id}></AddEventToPostModal>
                 }
 
                 {this.state.activePost.event !== null &&
-                <RemoveEventFromPostModal post={this.state.activePost} id={this.props.location.state.id}></RemoveEventFromPostModal>
+                <RemoveEventFromPostModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></RemoveEventFromPostModal>
                 }
 
                 {this.state.activePost.event != null &&

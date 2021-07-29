@@ -2,7 +2,7 @@ import React, {SyntheticEvent} from 'react';
 import Cookies from "js-cookie";
 import {Button} from "react-bootstrap";
 
-const EventList = ({eventList=[], post, id}:any) => {
+const EventList = ({eventList=[], post, id, refreshPostAddEvent}:any) => {
 
     const addEventToPoll = async (postId: string, eventId: string) =>{
         const token = Cookies.get('token');
@@ -11,8 +11,7 @@ const EventList = ({eventList=[], post, id}:any) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
-
+        refreshPostAddEvent(post.id)
     }
 
 

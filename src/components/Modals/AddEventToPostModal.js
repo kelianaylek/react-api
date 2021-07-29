@@ -6,7 +6,7 @@ import SearchEvent from "../Event/SearchBar";
 import EventList from "../Event/EventList";
 
 
-const AddEventToPostModal = ({post, event, id}) => {
+const AddEventToPostModal = ({post, event, id, refreshPost}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,19 +17,22 @@ const AddEventToPostModal = ({post, event, id}) => {
     const [eventList, setEventList] = useState();
 
     const fetchData = async () => {
-        return await fetch('https://apisymfonykelian.herokuapp.com/api/events')
+         await fetch('https://apisymfonykelian.herokuapp.com/api/events')
             .then(response => response.json())
             .then(data => {
                 setEventList(data)
                 setEventListDefault(data)
-            });}
-
+            })
+    ;}
     const updateInput = async (input) => {
         const filtered = eventListDefault?.filter((event) => {
             return event.title.toLowerCase().includes(input.toLowerCase())
         })
         setInput(input);
         setEventList(filtered);
+    }
+    const refreshPostAddEvent = (postId) => {
+        refreshPost(postId)
     }
 
     useEffect( () => {fetchData()},[]);
@@ -53,7 +56,7 @@ const AddEventToPostModal = ({post, event, id}) => {
                             onChange={updateInput}
                         />
 
-                        <EventList eventList={eventList} post={post} id={id}/>
+                        <EventList refreshPostAddEvent={refreshPostAddEvent} eventList={eventList} post={post} id={id}/>
 
                     </Modal.Body>
 

@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
-const RemoveEventFromPost = (props : {post :any, id :any}) => {
+const RemoveEventFromPost = (props : {post :any, id :any, refreshPost :any}) => {
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,7 +17,8 @@ const RemoveEventFromPost = (props : {post :any, id :any}) => {
             method : 'PUT',
             headers : {"Authorization" : "Bearer " + token},
         })
-        window.location.reload();
+        props.refreshPost(props.post.id)
+        handleClose()
 
     }
     if(props.id === props.post?.author?.id){
