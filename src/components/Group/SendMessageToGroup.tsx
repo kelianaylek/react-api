@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 
 const SendMessageToGroup = (props : {group :any, refreshGroup :any}) => {

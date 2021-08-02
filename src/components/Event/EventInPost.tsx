@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
+import React from 'react';
 import ParticipateToEvent from "../Modals/ParticipateToEvent";
 import UnParticipateToEvent from "../Modals/UnParticipateToEventModal";
+import moment from "moment";
 
 class EventInPost extends React.Component<any, any> {
     state = {
@@ -38,8 +38,8 @@ class EventInPost extends React.Component<any, any> {
                         <span key={members.id}> User : {members.name} - </span>
                     ))}
                 </p>
-                <p>Start : {this.state.event.startDate}</p>
-                <p>End : {this.state.event.endDate}</p>
+                <p>Start : {moment(this.state.event.startDate).format('DD/MM/YYYY')}</p>
+                <p>End : {moment(this.state.event.endDate).format('DD/MM/YYYY')}</p>
 
                 {this.state.event?.members?.map((member:any) => {
                     if(this.props.id !== this.state.event?.owner?.id && member.id === this.props.id){

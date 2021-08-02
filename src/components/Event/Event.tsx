@@ -1,13 +1,11 @@
-import React, {useState} from 'react'
-import {Link} from "react-router-dom";
+import React from 'react'
 import CreateEventModal from "../Modals/CreateEventModal";
 import EditEventModal from "../Modals/EditEventModal";
 import DeleteEventModal from "../Modals/DeleteEventModal";
 import AddMemberToEventModal from "../Modals/AddMemberToEventModal";
 import RemoveMemberFromEventModal from "../Modals/RemoveMemberFromEventModal";
 import UnParticipateToEvent from "../Modals/UnParticipateToEventModal"
-import {Button} from "react-bootstrap";
-import Cookies from "js-cookie";
+import moment from "moment";
 
 const Event = ({ events, id, refreshEvents }:any) => {
 
@@ -46,8 +44,8 @@ const Event = ({ events, id, refreshEvents }:any) => {
                                                 </div>
                                             ))}
                                         </div>
-                                        <p>Start : {event.startDate}</p>
-                                        <p>End : {event.endDate}</p>
+                                        <p>Start : {moment(event.startDate).format('DD/MM/YYYY')}</p>
+                                        <p>End : {moment(event.endDate).format('DD/MM/YYYY')}</p>
 
                                         <AddMemberToEventModal refreshEvent={refreshEvent} event={event} id={id}></AddMemberToEventModal>
 
@@ -83,8 +81,9 @@ const Event = ({ events, id, refreshEvents }:any) => {
                                                                     </div>
                                                                 ))}
                                                             </div>
-                                                            <p>Start : {event.startDate}</p>
-                                                            <p>End : {event.endDate}</p>
+                                                            <p>Start : {moment(event.startDate).format('DD/MM/YYYY')}</p>
+                                                            <p>End : {moment(event.endDate).format('DD/MM/YYYY')}</p>
+
                                                             <UnParticipateToEvent refreshEvent={refreshEvent} event={event}></UnParticipateToEvent>
                                                         </div>
                                                     </div>

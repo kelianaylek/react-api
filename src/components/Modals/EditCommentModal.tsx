@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
@@ -39,7 +38,7 @@ const EditCommentModal = (props : {comment :any, id :any, refreshPost :any, post
                     <Form onSubmit={editComment}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Content</Form.Label>
-                            <Form.Control type="text" defaultValue={props.comment.message} onChange={e => setMessage(e.target.value)}/>
+                            <Form.Control type="text" defaultValue={props.comment.message} required onChange={e => setMessage(e.target.value)}/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

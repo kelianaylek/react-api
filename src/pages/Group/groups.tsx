@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
+import React from 'react';
 import Groups from "../../components/Group/groups";
 
 class GroupList extends React.Component<any> {

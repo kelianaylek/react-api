@@ -1,5 +1,4 @@
-import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
+import React from "react";
 import EditPostModal from '../Modals/EditPostModal'
 
 class EditButton extends React.Component<any, any> {

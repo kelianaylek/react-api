@@ -1,9 +1,10 @@
-import React, {useState} from 'react'
+import React from 'react'
 import {Link} from "react-router-dom";
 import LikeButton from "./likeButton";
 import EditButton from "./EditButton";
 import DeleteButton from "./DeleteButton";
 import CreatePostModal from "../Modals/CreatePostModal";
+import moment from "moment";
 
 class Post extends React.Component {
     state = {
@@ -49,7 +50,7 @@ class Post extends React.Component {
                             <div className="card-body">
                                 <h5 className="card-title" key={post.id}>Id : {post.id}</h5>
                                 <h6 className="card-subtitle mb-2 text-muted">Content : {post.content}</h6>
-                                <h6 className="card-subtitle mb-2 text-muted">Publié à : {post.publishedAt}</h6>
+                                <h6 className="card-subtitle mb-2 text-muted">Publié le : {moment(post.publishedAt).format('DD/MM/YYYY')}</h6>
                                 <h6 className="card-subtitle mb-2 text-muted">Image link : {post.image}</h6>
 
 

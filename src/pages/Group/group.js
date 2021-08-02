@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
-import {Link} from "react-router-dom";
+import React from 'react';
 import DeleteGroupModal from "../../components/Modals/DeleteGroupModal";
 import AddUserToGroupModal from "../../components/Modals/AddUserToGroupModal";
 import RemoveUserFromGroupModal from "../../components/Modals/ManageUsersFromGroupModal";

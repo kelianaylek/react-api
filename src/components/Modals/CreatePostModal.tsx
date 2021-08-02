@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
@@ -41,7 +40,7 @@ const CreatePostModal = (props : {createPost :any}) => {
                     <Form onSubmit={createPost}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Content</Form.Label>
-                            <Form.Control type="text" placeholder="Write your content" onChange={e => setContent(e.target.value)}/>
+                            <Form.Control type="text" placeholder="Write your content" required onChange={e => setContent(e.target.value)}/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

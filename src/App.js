@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import "./App.css"
 import Login from './pages/Auth/Login'
 import Nav from './components/Navbar/Nav'

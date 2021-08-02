@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
+import React from 'react';
 
 class GetMessages extends React.Component<any, any> {
     state = {

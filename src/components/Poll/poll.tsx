@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
+import React from 'react';
 import CreatePollChoiceModal from "../Modals/CreatePollChoiceModal";
 import DeletePollChoiceModal from "../Modals/DeletePollChoiceModal";
 import VoteToPollChoiceButton from './VoteToPollChoiceButton'

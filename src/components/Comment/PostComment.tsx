@@ -1,13 +1,10 @@
 import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 
 const PostComment = (props : {post :any, getPost :any}) => {
 
     const [message, setMessage] = useState('');
     const [image, setImage] = useState('');
-    const  [redirect, setRedirect ] = useState(false);
-
 
     const submit = async (e: SyntheticEvent) =>{
         e.preventDefault()

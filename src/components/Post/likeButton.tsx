@@ -1,5 +1,4 @@
-import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
+import React from "react";
 import Cookies from "js-cookie";
 
 class LikeButton extends React.Component<any, any> {

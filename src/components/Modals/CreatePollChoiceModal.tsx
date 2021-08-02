@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
@@ -41,7 +40,7 @@ const CreatePollChoiceModal = (props : {post :any, refreshPoll :any}) => {
                     <Form onSubmit={createPostChoice}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder="title" onChange={e => setTitle(e.target.value)}/>
+                            <Form.Control type="text" placeholder="title" required onChange={e => setTitle(e.target.value)}/>
                         </Form.Group>
                         <Button variant="primary" type="submit">
                             Add

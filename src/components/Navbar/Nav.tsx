@@ -29,6 +29,9 @@ class Nav extends React.Component<any, any> {
                     <li className="nav-item">
                         <Link to="/groups" className="nav-link active" aria-current="page">Groups</Link>
                     </li>
+                    <li className="nav-item">
+                        <a className="nav-link active">{this.props.name}</a>
+                    </li>
                 </ul>
             )
         }

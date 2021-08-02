@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
+import React from 'react';
 import EditCommentModal from "../Modals/EditCommentModal";
 import DeleteCommentModal from "../Modals/DeleteComment";
 

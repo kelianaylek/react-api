@@ -1,7 +1,6 @@
-import React, {SyntheticEvent} from 'react';
+import React from 'react';
 import Cookies from "js-cookie";
 import {Button} from "react-bootstrap";
-import {forEach} from "react-bootstrap/ElementChildren";
 
 const AddGroupUsersList = ({groupUserList=[], group, id, refreshGroupAddUser}:any) => {
 

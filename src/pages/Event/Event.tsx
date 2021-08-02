@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
+import React from 'react';
 import Event from '../../components/Event/Event'
 
 class EventList extends React.Component<any> {

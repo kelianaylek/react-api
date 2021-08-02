@@ -1,7 +1,5 @@
-import React, {SyntheticEvent, useState, useEffect} from "react";
-import {Redirect} from 'react-router-dom'
-import Cookies from "js-cookie";
-import {Button, Form, Modal} from "react-bootstrap";
+import React, {useState, useEffect} from "react";
+import {Button, Modal} from "react-bootstrap";
 import SearchEvent from "../Event/SearchBar";
 import AddGroupUsersList from "../Group/AddGroupUsersList";
 

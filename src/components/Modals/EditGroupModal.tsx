@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
@@ -39,7 +38,7 @@ const EditGroupModal = (props : {group :any, refreshGroup :any}) => {
                     <Form onSubmit={editPost}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Name</Form.Label>
-                            <Form.Control type="text" defaultValue={props.group.name} onChange={e => setName(e.target.value)}/>
+                            <Form.Control type="text" defaultValue={props.group.name} required onChange={e => setName(e.target.value)}/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

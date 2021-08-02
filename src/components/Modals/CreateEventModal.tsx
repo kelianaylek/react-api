@@ -1,5 +1,4 @@
 import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 
@@ -45,16 +44,16 @@ const CreateEventModal = (props : {refreshEvent :any}) => {
                     <Form onSubmit={createEvent}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Title</Form.Label>
-                            <Form.Control type="text" placeholder="title" onChange={e => setTitle(e.target.value)}/>
+                            <Form.Control type="text" placeholder="title" required onChange={e => setTitle(e.target.value)}/>
 
                             <Form.Label>Description</Form.Label>
-                            <Form.Control type="text" placeholder="description" onChange={e => setDescription(e.target.value)}/>
+                            <Form.Control type="text" placeholder="description" required onChange={e => setDescription(e.target.value)}/>
 
                             <Form.Label>Start</Form.Label>
-                            <Form.Control type="date" placeholder="Start" onChange={e => setStartDate(e.target.value)}/>
+                            <Form.Control type="date" placeholder="Start" required onChange={e => setStartDate(e.target.value)}/>
 
                             <Form.Label>End</Form.Label>
-                            <Form.Control type="date" placeholder="End" onChange={e => setEndDate(e.target.value)}/>
+                            <Form.Control type="date" placeholder="End" required onChange={e => setEndDate(e.target.value)}/>
                         </Form.Group>
 
                         <Button variant="primary" type="submit">

@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-import {routes} from "../../router/RouteConstants";
-import {Link} from "react-router-dom";
+import React from 'react';
 import Poll from "../../components/Poll/poll"
 import EventInPost from "../../components/Event/EventInPost";
 import GetComments from "../../components/Comment/getComments"
@@ -9,6 +7,7 @@ import CreatePollModal from "../../components/Modals/CreatePollModal";
 import DeletePollModal from "../../components/Modals/DeletePollModal";
 import AddEventToPostModal from "../../components/Modals/AddEventToPostModal";
 import RemoveEventFromPostModal from "../../components/Modals/RemoveEventFromPostModal";
+import moment from "moment";
 
 class Post extends React.Component {
     state = {
@@ -44,7 +43,7 @@ class Post extends React.Component {
             <div>
                 <p>Id : {this.state.activePost.id}</p>
                 <p>Content : {this.state.activePost.content}</p>
-                <p>Date : {this.state.activePost.publishedAt}</p>
+                <p>Date : {moment(this.state.activePost.publishedAt).format('DD/MM/YYYY')}</p>
                 <p>Image Link : {this.state.activePost.image}</p>
 
                 <GetComments refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></GetComments>

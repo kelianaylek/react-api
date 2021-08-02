@@ -1,10 +1,6 @@
-import React, {SyntheticEvent, useState, useEffect} from "react";
-import {Redirect} from 'react-router-dom'
-import Cookies from "js-cookie";
+import React, {useState, useEffect} from "react";
 import {Button, Form, Modal} from "react-bootstrap";
-import SearchEvent from "../Event/SearchBar";
 import GroupUsersList from "../Group/GroupUsersList";
-
 
 const RemoveUserToGroupModal = ({group, id, refreshGroup}) => {
 

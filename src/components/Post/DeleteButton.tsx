@@ -1,7 +1,4 @@
-import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
-import Cookies from "js-cookie";
-import LikeButton from "./likeButton";
+import React from "react";
 import DeletePostModal from "../Modals/DeletePostModal";
 
 class DeleteButton extends React.Component<any, any> {

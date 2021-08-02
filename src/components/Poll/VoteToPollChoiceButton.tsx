@@ -1,7 +1,6 @@
-import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
+import React, {SyntheticEvent} from "react";
 import Cookies from "js-cookie";
-import {Button, Form, Modal} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 
 const VoteToPollChoiceButton = (props : {pollChoice : any, refreshPoll :any, poll :any}) => {;
 

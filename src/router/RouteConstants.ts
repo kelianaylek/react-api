@@ -14,10 +14,6 @@ export const routes = {
     POST_POST: '/posts',
     PUT_POST: '/posts/:postId',
     DEL_POST: "/posts/:postId",
-    //ADD_LIKE_POST: "/posts/:userId",
-    // REMOVE_LIKE_POST: "/posts/:userId",
-    //ADD_EVENT_POST: "/posts/:userId",
-    //REMOVE_EVENT_POST: "/posts/:userId",
 
     GET_COMMENTS: '/comments',
     GET_COMMENT: '/comments/:commentId',

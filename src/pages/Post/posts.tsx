@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Posts from "../../components/Post/posts";
 import {routes} from "../../router/RouteConstants";
 
