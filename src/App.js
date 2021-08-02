@@ -18,20 +18,15 @@ class App extends React.Component{
         id : ''
     }
 
-    componentDidMount()
-    {
-        (
-            async () => {
-                const response = await fetch('https://apisymfonykelian.herokuapp.com/api/users/connected', {
-                    headers : {"Content-Type" : "application/json", "Authorization" : "Bearer " + Cookies.get('token')},
-                    credentials : 'include'
-                })
-                const content = await response.json()
-                this.setState({name : content.name})
-                this.setState({id : content.id})
 
-            }
-        )();
+    async componentDidMount() {
+        const response = await fetch('https://apisymfonykelian.herokuapp.com/api/users/connected', {
+            headers: {"Content-Type": "application/json", "Authorization": "Bearer " + Cookies.get('token')},
+            credentials: 'include'
+        })
+        const content = await response.json()
+        this.setState({name: content.name})
+        this.setState({id: content.id})
     }
 
 render(){
@@ -43,8 +38,8 @@ render(){
 
                     <main>
                         <Switch>
-                            <Route path="/" component={() => <Home name={this.state.name}/>} exact/>
-                            <Route path="/login" component={Login}/>
+                            <Route path="/" component={() => <Home name={this.state.name} />} exact/>
+                            <Route path="/login" component={Login} />
                             <Route path="/register" component={Register}/>
                             <Route path="/posts" component={() => <PostList id={this.state.id}/>}/>
                             <Route path={"/post/:postId"} component={Post}/>

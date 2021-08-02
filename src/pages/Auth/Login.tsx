@@ -7,6 +7,8 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const  [redirect, setRedirect ] = useState(false);
+    const [credentialsError, setCredentialsError ] = useState('')
+    const [serverError, setServerError ] = useState('')
 
     const submit = async (e: SyntheticEvent) =>{
         e.preventDefault()
@@ -19,16 +21,43 @@ const Login = () => {
                 username,
                 password
             })
-        }).then(response=>response.json())
-            .then(function (data){
-                Cookies.set('token', data.token);
+        }).then((response) => {
+            if (response.ok) {
+                setCredentialsError('')
 
+                return response.json();
+            } else {
+                setServerError('')
+                setCredentialsError('')
+                return Promise.reject(response); // 2. reject instead of throw
+            }
+        })
+            .then((responseJson) => {
+                Cookies.set('token', responseJson.token);
+                setRedirect(true)
+                // Do something with the response
             })
-        setRedirect(true);
+            .catch((response) => {
+                // 3. get error messages, if any
+                if(response.status === 500){
+                    setServerError(response.status + " " +  response.statusText)
+                }
+                response.json().then((json: any) => {
+                    console.log(json);
+                    setCredentialsError(json.message)
+                })
+            });
+
+
     }
     if(redirect){
-        return <Redirect to="/"/>
+        return  <Redirect
+            to={{
+                pathname: "/",
+            }}
+        />
     }
+
 
     return (
         <form onSubmit={submit}>
@@ -40,6 +69,8 @@ const Login = () => {
             <div className="form-floating">
                 <input type="password" className="form-control"  placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
             </div>
+            <p>{credentialsError}</p>
+            <p>{serverError}</p>
 
             <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
         </form>
