@@ -23,7 +23,7 @@ const RemoveEventFromPost = (props : {post :any, id :any, refreshPost :any}) => 
     if(props.id === props.post?.author?.id){
         return (
             <>
-                <Button variant="primary" onClick={handleShow}>
+                <Button variant="danger" onClick={handleShow}>
                     Remove Event
                 </Button>
 

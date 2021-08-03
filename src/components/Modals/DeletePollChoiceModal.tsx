@@ -22,7 +22,7 @@ const DeletePollChoiceModal = (props : {poll :any, pollChoice :any, refreshPoll 
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow}>
                 Remove
             </Button>
 

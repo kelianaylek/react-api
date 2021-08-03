@@ -26,7 +26,7 @@ const EditGroupModal = (props : {group :any, refreshGroup :any}) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="warning" onClick={handleShow}>
                 Change name
             </Button>
 

@@ -25,7 +25,7 @@ const DeletePollModal = (props : {post :any, id :number, refreshPost :any}) => {
     if(id === post.author?.id && post?.poll !== null){
         return (
             <>
-                <Button variant="primary" onClick={handleShow}>
+                <Button variant="danger" onClick={handleShow}>
                     Remove Poll
                 </Button>
 

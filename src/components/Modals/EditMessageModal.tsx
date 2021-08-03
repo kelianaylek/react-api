@@ -26,7 +26,7 @@ const EditMessageModal = (props : {message :any, refreshGroup :any, group :any})
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="warning" onClick={handleShow}>
                 Edit
             </Button>
 

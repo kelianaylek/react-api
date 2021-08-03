@@ -21,7 +21,7 @@ const DeletePostModal = (props : {post :any, deletePost :any}) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow}>
                 Delete Post
             </Button>
 

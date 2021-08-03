@@ -26,7 +26,7 @@ const LeaveGroupModal = (props : {group :any, refreshGroup :any}) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow}>
                 Leave group
             </Button>
 

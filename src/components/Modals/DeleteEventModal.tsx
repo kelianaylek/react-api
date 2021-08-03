@@ -22,7 +22,7 @@ const DeleteEventModal = (props : {event :any, refreshEvent :any}) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow}>
                 Delete Event
             </Button>
 

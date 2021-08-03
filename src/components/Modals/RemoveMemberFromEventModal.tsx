@@ -22,7 +22,7 @@ const RemoveMemberFromEventModal = (props : { event :any, member :any, refreshEv
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow}>
                 Remove
             </Button>
 

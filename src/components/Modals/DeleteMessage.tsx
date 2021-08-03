@@ -22,7 +22,7 @@ const DeleteMessageModal = (props : {message :any, group :any, refreshGroup :any
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow}>
                 Delete
             </Button>
 

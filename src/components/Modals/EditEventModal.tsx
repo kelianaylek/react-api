@@ -33,7 +33,7 @@ const EditEventModal = (props : {event :any, refreshEvent :any}, ) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="warning" onClick={handleShow}>
                 Edit Event
             </Button>
 

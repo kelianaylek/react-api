@@ -22,7 +22,7 @@ const DeleteCommentModal = (props : {comment :any, id :any, refreshPost :any, po
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button variant="danger" onClick={handleShow}>
                 Delete
             </Button>
 
