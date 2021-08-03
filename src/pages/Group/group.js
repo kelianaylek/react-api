@@ -7,6 +7,7 @@ import LeaveGroupModal from "../../components/Modals/LeaveGroupModal";
 import SendMessageToGroup from "../../components/Group/SendMessageToGroup";
 import DeleteMessage from "../../components/Modals/DeleteMessage";
 import EditMessageModal from "../../components/Modals/EditMessageModal";
+import {Link} from "react-router-dom";
 
 class Group extends React.Component {
     state = {
@@ -31,7 +32,10 @@ class Group extends React.Component {
 
     render() {
         return (
-            <div>
+            <>
+                <Link to="/groups">Retour</Link>
+
+                <div>
 
                 <div className="d-flex justify-content-around">
                     <h3>Users :</h3>
@@ -96,7 +100,7 @@ class Group extends React.Component {
 
 
             </div>
-
+            </>
         );
     }
 }

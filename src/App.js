@@ -40,11 +40,11 @@ render(){
                             <Route path="/login" component={() => <> <Nav name={this.state.name}></Nav> <Login/> </>} />
                             <Route path="/register" component={() => <> <Nav name={this.state.name}></Nav> <Register/> </>}/>
                             <Route path="/posts" component={() => <> <Nav name={this.state.name}></Nav> <PostList id={this.state.id}/> </>}/>
-                            <Route path={"/post/:postId"} component={<> <Nav name={this.state.name}></Nav> <Post/> </>}/>
+                            <Route path={"/post/:postId"} component={Post}/>
 
                             <Route path="/events" component={() => <> <Nav name={this.state.name}></Nav> <Event id={this.state.id}/> </>}/>
                             <Route path="/groups" component={() => <> <Nav name={this.state.name}></Nav> <GroupList id={this.state.id}/> </>}/>
-                            <Route path={"/group/:groupId"} component={() => <> <Nav name={this.state.name}></Nav> <Group/> </>}/>
+                            <Route path={"/group/:groupId"} component={Group}/>
 
 
                         </Switch>

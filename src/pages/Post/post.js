@@ -8,6 +8,7 @@ import DeletePollModal from "../../components/Modals/DeletePollModal";
 import AddEventToPostModal from "../../components/Modals/AddEventToPostModal";
 import RemoveEventFromPostModal from "../../components/Modals/RemoveEventFromPostModal";
 import moment from "moment";
+import {Link} from "react-router-dom";
 
 class Post extends React.Component {
     state = {
@@ -40,39 +41,41 @@ class Post extends React.Component {
 
     render() {
         return (
-            <div>
-                <p>Id : {this.state.activePost.id}</p>
-                <p>Content : {this.state.activePost.content}</p>
-                <p>Date : {moment(this.state.activePost.publishedAt).format('DD/MM/YYYY')}</p>
-                <p>Image Link : {this.state.activePost.image}</p>
+            <>
+                <Link to="/posts">Retour</Link>
+                <div>
+                    <p>Id : {this.state.activePost.id}</p>
+                    <p>Content : {this.state.activePost.content}</p>
+                    <p>Date : {moment(this.state.activePost.publishedAt).format('DD/MM/YYYY')}</p>
+                    <p>Image Link : {this.state.activePost.image}</p>
 
-                <GetComments refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></GetComments>
+                    <GetComments refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></GetComments>
 
-                <PostComment post={this.state.activePost} getPost={this.getPost}></PostComment>
+                    <PostComment post={this.state.activePost} getPost={this.getPost}></PostComment>
 
-                <br/><br/>
-                <CreatePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></CreatePollModal>
-                <br/>
-                <DeletePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></DeletePollModal>
+                    <br/><br/>
+                    <CreatePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></CreatePollModal>
+                    <br/>
+                    <DeletePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></DeletePollModal>
 
-                {this.state.activePost.poll != null &&
+                    {this.state.activePost.poll != null &&
                     <Poll post={this.state.activePost} id={this.props.location.state.id}></Poll>
-                }
+                    }
 
-                <br/><br/>
-                {this.state.activePost.event === null &&
-                <AddEventToPostModal refreshPost={this.refreshPost} post={this.state.activePost} event={this.state.activePost.event} id={this.props.location.state.id}></AddEventToPostModal>
-                }
+                    <br/><br/>
+                    {this.state.activePost.event === null &&
+                    <AddEventToPostModal refreshPost={this.refreshPost} post={this.state.activePost} event={this.state.activePost.event} id={this.props.location.state.id}></AddEventToPostModal>
+                    }
 
-                {this.state.activePost.event !== null &&
-                <RemoveEventFromPostModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></RemoveEventFromPostModal>
-                }
+                    {this.state.activePost.event !== null &&
+                    <RemoveEventFromPostModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></RemoveEventFromPostModal>
+                    }
 
-                {this.state.activePost.event != null &&
+                    {this.state.activePost.event != null &&
                     <EventInPost event={this.state.activePost.event} id={this.props.location.state.id}></EventInPost>
-                }
-            </div>
-
+                    }
+                </div>
+            </>
         );
     }
 }
