@@ -26,7 +26,7 @@ const RemoveUserToGroupModal = ({group, id, refreshGroup}) => {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <Button className="mr-2" variant="primary" onClick={handleShow}>
                 Manage users
             </Button>
 

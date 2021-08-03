@@ -1,5 +1,6 @@
 import React from "react";
 import Cookies from "js-cookie";
+import { HiOutlineThumbUp, HiOutlineThumbDown } from "react-icons/hi";
 
 class LikeButton extends React.Component<any, any> {
     state = {
@@ -46,13 +47,13 @@ class LikeButton extends React.Component<any, any> {
                         isLiked = true
                     }
                 })}
-                <h6 className="card-subtitle mb-2 text-muted">Likes : {this.state.post?.likedBy.length}</h6>
-
-                <button onClick={() => this.submit(isLiked)}>{isLiked ? 'Dislike' : 'Like'} </button>
+                <button className="btn btn-outline-danger" onClick={() => this.submit(isLiked)}>{isLiked ? <>{this.state.post?.likedBy.length}<HiOutlineThumbDown color="red"></HiOutlineThumbDown></>
+                    : <>{this.state.post?.likedBy.length} <HiOutlineThumbUp></HiOutlineThumbUp></>
+                } </button>
 
             </div>
         );
     }
 }
-{}
+
 export default LikeButton;

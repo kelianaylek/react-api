@@ -2,6 +2,7 @@ import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
 import moment from 'moment'
+import { HiOutlineCog } from "react-icons/hi";
 
 const EditEventModal = (props : {event :any, refreshEvent :any}, ) => {
 
@@ -34,7 +35,7 @@ const EditEventModal = (props : {event :any, refreshEvent :any}, ) => {
     return (
         <>
             <Button variant="warning" onClick={handleShow}>
-                Edit Event
+                <HiOutlineCog></HiOutlineCog>
             </Button>
 
             <Modal show={show} onHide={handleClose}>

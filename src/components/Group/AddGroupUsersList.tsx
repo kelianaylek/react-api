@@ -1,6 +1,7 @@
 import React from 'react';
 import Cookies from "js-cookie";
 import {Button} from "react-bootstrap";
+import { HiOutlineUserAdd } from "react-icons/hi";
 
 const AddGroupUsersList = ({groupUserList=[], group, id, refreshGroupAddUser}:any) => {
 
@@ -40,7 +41,7 @@ const AddGroupUsersList = ({groupUserList=[], group, id, refreshGroupAddUser}:an
                             <h1>{user.name}</h1>
 
                             <Button onClick={() => addMember(group.id, user.id)} variant="primary" type="submit">
-                                Add member
+                                <HiOutlineUserAdd></HiOutlineUserAdd>
                             </Button>
                         </div>
 

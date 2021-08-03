@@ -2,7 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Button, Modal} from "react-bootstrap";
 import SearchEvent from "../Event/SearchBar";
 import AddGroupUsersList from "../Group/AddGroupUsersList";
-
+import { HiOutlineUserAdd } from "react-icons/hi";
 
 const AddUserToGroupModal = ({group, id, refreshGroup}) => {
 
@@ -37,7 +37,7 @@ const AddUserToGroupModal = ({group, id, refreshGroup}) => {
     return (
         <>
             <Button variant="primary" onClick={handleShow}>
-                Add user
+                <HiOutlineUserAdd></HiOutlineUserAdd>
             </Button>
 
             <Modal show={show} onHide={handleClose}>

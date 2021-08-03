@@ -26,7 +26,7 @@ const DeleteGroupModal = (props : {group :any}) => {
 
     return (
         <>
-            <Button variant="danger" onClick={handleShow}>
+            <Button className="mr-2" variant="danger" onClick={handleShow}>
                 Delete group
             </Button>
 

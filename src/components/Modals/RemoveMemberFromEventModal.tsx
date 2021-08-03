@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
+import { HiOutlineUserRemove } from "react-icons/hi";
 
 const RemoveMemberFromEventModal = (props : { event :any, member :any, refreshEvent :any}) => {
 
@@ -23,7 +24,7 @@ const RemoveMemberFromEventModal = (props : { event :any, member :any, refreshEv
     return (
         <>
             <Button variant="danger" onClick={handleShow}>
-                Remove
+                <HiOutlineUserRemove></HiOutlineUserRemove>
             </Button>
 
             <Modal show={show} onHide={handleClose}>

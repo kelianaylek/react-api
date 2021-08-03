@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
+import { HiTrash } from "react-icons/hi";
 
 const DeleteCommentModal = (props : {comment :any, id :any, refreshPost :any, post :any}) => {
 
@@ -23,7 +24,7 @@ const DeleteCommentModal = (props : {comment :any, id :any, refreshPost :any, po
     return (
         <>
             <Button variant="danger" onClick={handleShow}>
-                Delete
+                <HiTrash></HiTrash>
             </Button>
 
             <Modal show={show} onHide={handleClose}>

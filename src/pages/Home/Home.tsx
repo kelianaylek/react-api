@@ -20,7 +20,8 @@ class Home extends React.Component<any, any> {
 
         return (
             <div>
-                <p>{this.state.name ? 'Hi ' + this.state.name : 'You are not logged in'}</p>
+                <p>{this.state.name ? 'Hi ' + this.state.name + " !" : 'You are not logged in'}</p>
+                <p>This little project has been made with a Symfony API and React.js</p>
 
             </div>
         )

@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
+import { HiOutlineCog } from "react-icons/hi";
 
 const EditPostModal = (props : {post :any, editPost :any}) => {
 
@@ -33,7 +34,7 @@ const EditPostModal = (props : {post :any, editPost :any}) => {
     return (
         <>
             <Button variant="warning" onClick={handleShow}>
-                Edit Post
+                <HiOutlineCog></HiOutlineCog>
             </Button>
 
             <Modal show={show} onHide={handleClose}>

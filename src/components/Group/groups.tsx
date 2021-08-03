@@ -6,11 +6,16 @@ const Groups = ({ groups, id, refreshGroups }: any) => {
 
     return (
         <div>
-            <h1>Group List</h1>
+            <div className="pr-4 pl-4 d-flex justify-content-between">
+                <h1>Group List</h1>
+                <div>
+                    <CreateGroupModal refreshGroups={refreshGroups}></CreateGroupModal>
 
-            <CreateGroupModal refreshGroups={refreshGroups}></CreateGroupModal>
+                </div>
+            </div>
 
-            <div className="d-flex justify-content-around flex-wrap">
+
+            <div className="d-flex justify-content-around flex-wrap mt-4">
                 {groups.map((group :any) => {
                     return(
                         <>
@@ -21,7 +26,7 @@ const Groups = ({ groups, id, refreshGroups }: any) => {
                                         <div key={group.id} className="card w-30 mb-4">
 
                                             <div className="card-body">
-                                                <p>{group.id} - {group.name}</p>
+                                                <p>{group.name}</p>
                                             </div>
                                             <button>
                                                 <Link to={{

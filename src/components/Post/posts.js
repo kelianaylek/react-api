@@ -37,22 +37,24 @@ class Post extends React.Component {
     render(){
         return (
             <div>
-                <center><h1>Post List</h1></center>
-
-                <CreatePostModal createPost={this.props.createPost}></CreatePostModal>
+                <div className="pr-4 pl-4 d-flex justify-content-between">
+                    <h1>Post List</h1>
+                    <div>
+                        <CreatePostModal createPost={this.props.createPost}></CreatePostModal>
+                    </div>
+                </div>
 
                 <div className="d-flex justify-content-around flex-wrap">
                     {this.props.posts.map((post) => (
-                        <div key={post.id} className="card w-30 mb-4">
+                        <div key={post.id} className="card w-25 m-3">
+                            <div className="d-flex justify-content-between">
+                                <EditButton editPosts={this.editPosts} post={post} id={this.props.id}></EditButton>
+                                <DeleteButton deletePost={this.deletePost} post={post} id={this.props.id}></DeleteButton>
+                            </div>
 
-                            <EditButton editPosts={this.editPosts} post={post} id={this.props.id}></EditButton>
-                            <DeleteButton deletePost={this.deletePost} post={post} id={this.props.id}></DeleteButton>
                             <div className="card-body">
-                                <h5 className="card-title" key={post.id}>Id : {post.id}</h5>
                                 <h6 className="card-subtitle mb-2 text-muted">Content : {post.content}</h6>
                                 <h6 className="card-subtitle mb-2 text-muted">Publié le : {moment(post.publishedAt).format('DD/MM/YYYY')}</h6>
-                                <h6 className="card-subtitle mb-2 text-muted">Image link : {post.image}</h6>
-
 
                                 <LikeButton post={post} id={this.props.id}></LikeButton>
 

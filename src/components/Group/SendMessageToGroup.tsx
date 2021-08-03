@@ -1,5 +1,6 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
+import { HiOutlineArrowCircleUp } from "react-icons/hi";
 
 const SendMessageToGroup = (props : {group :any, refreshGroup :any}) => {
 
@@ -23,13 +24,11 @@ const SendMessageToGroup = (props : {group :any, refreshGroup :any}) => {
 
     return (
         <form onSubmit={submit}>
-            <p className="fw-normal">Send message</p>
-
-            <div className="form-floating">
-                <input type="text" className="form-control" value={content} placeholder="Message" required onChange={e => setContent(e.target.value)}/>
+            <div className="form-floating d-flex">
+                <input type="text" className="form-control form-control-lg" value={content} placeholder="Message" required onChange={e => setContent(e.target.value)}/>
+                <button className="btn btn-primary" type="submit"><HiOutlineArrowCircleUp color="white"></HiOutlineArrowCircleUp></button>
             </div>
 
-            <button className="w-100 btn btn-lg btn-primary" type="submit">Send</button>
         </form>
     )
 }

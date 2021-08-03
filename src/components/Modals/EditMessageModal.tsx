@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
+import { HiOutlineCog } from "react-icons/hi";
 
 const EditMessageModal = (props : {message :any, refreshGroup :any, group :any}) => {
 
@@ -22,12 +23,13 @@ const EditMessageModal = (props : {message :any, refreshGroup :any, group :any})
         })
         props.refreshGroup(props.group.id)
         handleClose()
+
     }
 
     return (
         <>
-            <Button variant="warning" onClick={handleShow}>
-                Edit
+            <Button className="mr-2" variant="warning" onClick={handleShow}>
+                <HiOutlineCog></HiOutlineCog>
             </Button>
 
             <Modal show={show} onHide={handleClose}>
