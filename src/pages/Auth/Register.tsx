@@ -1,5 +1,5 @@
 import React, {SyntheticEvent, useState} from "react";
-import {Redirect} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 const Register = () => {
 
@@ -67,28 +67,36 @@ const Register = () => {
     }
 
     return (
-    <form onSubmit={submit}>
-        <h1 className="h3 mb-3 fw-normal">Please register</h1>
+        <>
+            <div className="d-flex justify-content-center">
+                <form className="w-25" onSubmit={submit}>
+                    <h1 className="h3 mb-3 fw-normal">Please register</h1>
 
-        <div className="form-floating">
-            <input type="text" className="form-control"  placeholder="Name" required onChange={e => setName(e.target.value)}/>
-        </div>
-        <p>{nameError}</p>
+                    <div className="form-floatingw  ">
+                        <input type="text" className="form-control"  placeholder="Name" required onChange={e => setName(e.target.value)}/>
+                    </div>
+                    <p>{nameError}</p>
 
-        <div className="form-floating">
-            <input type="email" className="form-control"  placeholder="name@example.com" required onChange={e => setEmail(e.target.value)}/>
-        </div>
-        <p>{emailError}</p>
+                    <div className="form-floating">
+                        <input type="email" className="form-control"  placeholder="name@example.com" required onChange={e => setEmail(e.target.value)}/>
+                    </div>
+                    <p>{emailError}</p>
 
-        <div className="form-floating">
-            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
-        </div>
-        <p>{passwordError}</p>
+                    <div className="form-floating">
+                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
+                    </div>
+                    <p>{passwordError}</p>
 
-        <p>{serverError}</p>
+                    <p>{serverError}</p>
 
-        <button className="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
-    </form>
+                    <button className="w-100 btn btn-lg btn-primary mb-4" type="submit">Sign up</button>
+                </form>
+            </div>
+
+            <p>You already have an account ?</p>
+            <Link to="/login">Log in</Link>
+        </>
+
     )
 }
 

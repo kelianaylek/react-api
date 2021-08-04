@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from 'js-cookie'
 import {Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 
 const Login = () => {
 
@@ -35,6 +36,8 @@ const Login = () => {
             .then((responseJson) => {
                 Cookies.set('token', responseJson.token);
                 setRedirect(true)
+                window.location.reload()
+
                 // Do something with the response
             })
             .catch((response) => {
@@ -60,20 +63,26 @@ const Login = () => {
 
 
     return (
-        <form onSubmit={submit}>
-            <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+        <>
+            <div className="d-flex justify-content-center">
+                <form className="w-25" onSubmit={submit}>
+                    <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
+                    <div className="form-floating mb-3">
+                        <input type="email" className="form-control"  placeholder="email@example.fr" required onChange={e => setUsername(e.target.value)}/>
+                    </div>
+                    <div className="form-floating">
+                        <input type="password" className="form-control"  placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
+                    </div>
+                    <p>{credentialsError}</p>
+                    <p>{serverError}</p>
 
-            <div className="form-floating">
-                <input type="email" className="form-control"  placeholder="email@example.fr" required onChange={e => setUsername(e.target.value)}/>
+                    <button className="w-100 btn btn-lg btn-primary  mb-4" type="submit">Sign in</button>
+                </form>
             </div>
-            <div className="form-floating">
-                <input type="password" className="form-control"  placeholder="Password" required onChange={e => setPassword(e.target.value)}/>
-            </div>
-            <p>{credentialsError}</p>
-            <p>{serverError}</p>
+            <p>You don't have an account ?</p>
+            <Link to="/register">Register</Link>
+        </>
 
-            <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-        </form>
     )
 }
 

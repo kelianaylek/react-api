@@ -26,6 +26,7 @@ class App extends React.Component{
         const content = await response.json()
         this.setState({name: content.name})
         this.setState({id: content.id})
+        this.forceUpdate()
     }
 
 render(){
@@ -39,7 +40,7 @@ render(){
                             <Route path="/" component={() => <> <Nav name={this.state.name}></Nav> <Home name={this.state.name} /> </>} exact/>
                             <Route path="/login" component={() => <> <Nav name={this.state.name}></Nav> <Login/> </>} />
                             <Route path="/register" component={() => <> <Nav name={this.state.name}></Nav> <Register/> </>}/>
-                            <Route path="/posts" component={() => <> <Nav name={this.state.name}></Nav> <PostList id={this.state.id}/> </>}/>
+                            <Route path="/posts" component={() => <> <Nav name={this.state.name}></Nav> <PostList id={this.state.id} /> </>}/>
                             <Route path={"/post/:postId"} component={Post}/>
 
                             <Route path="/events" component={() => <> <Nav name={this.state.name}></Nav> <Event id={this.state.id}/> </>}/>

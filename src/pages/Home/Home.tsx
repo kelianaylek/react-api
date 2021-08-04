@@ -13,7 +13,6 @@ class Home extends React.Component<any, any> {
         })
         const content = await response.json()
         this.setState({name: content.name})
-
     }
 
     render(){
