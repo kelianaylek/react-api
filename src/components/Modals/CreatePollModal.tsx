@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
+import { HiOutlinePlusSm} from "react-icons/hi";
 
 const CreatePollModal = (props : {post :any, id :number, refreshPost :any}) => {
 
@@ -26,7 +27,7 @@ const CreatePollModal = (props : {post :any, id :number, refreshPost :any}) => {
         return (
             <>
                 <Button variant="primary" onClick={handleShow}>
-                    Add Poll
+                     Poll <HiOutlinePlusSm></HiOutlinePlusSm>
                 </Button>
 
                 <Modal show={show} onHide={handleClose}>

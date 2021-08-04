@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
+import { HiTrash } from "react-icons/hi";
 
 const DeletePollChoiceModal = (props : {poll :any, pollChoice :any, refreshPoll :any}) => {
 
@@ -23,7 +24,7 @@ const DeletePollChoiceModal = (props : {poll :any, pollChoice :any, refreshPoll 
     return (
         <>
             <Button variant="danger" onClick={handleShow}>
-                Remove
+                <HiTrash></HiTrash>
             </Button>
 
             <Modal show={show} onHide={handleClose}>

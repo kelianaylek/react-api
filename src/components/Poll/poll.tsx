@@ -29,37 +29,38 @@ class Poll extends React.Component<any, any> {
     render() {
         return (
             <div>
-                <h2>Poll :</h2>
-                <p>Poll id : {this.state.poll.id}
-                </p>
-                <p>Choices : </p>
+                <h5>Poll :</h5>
+
+                {this.state.poll?.pollChoices?.length === 0 ?
+                    <p>You have no poll choices yet</p>
+                    :
+                    <p>Choices : </p>
+                }
 
                 {this.state.poll?.pollChoices?.map((pollChoice:any) => (
-                    <div className="d-flex justify-content-around" key={pollChoice.id}>
-
-                        {this.state.id === this.props.post.author.id ?
-                            <DeletePollChoiceModal refreshPoll={this.refreshPoll} poll={this.state.poll} pollChoice={pollChoice}></DeletePollChoiceModal>
-                            : ""
-                        }
-
-                        <p>Id : {pollChoice.id}</p>
-                        <p>Title : {pollChoice.title}</p>
-
-                        {pollChoice?.users?.map((pollChoiceUsers:any) => (
-                            <div key={pollChoiceUsers.id}>
-                                <p>User : {pollChoiceUsers.id}</p>
+                    <>
+                        <div className="d-flex justify-content-around align-items-baseline" key={pollChoice.id}>
+                            {this.state.id === this.props.post.author.id ?
+                                <div>
+                                    <DeletePollChoiceModal refreshPoll={this.refreshPoll} poll={this.state.poll} pollChoice={pollChoice}></DeletePollChoiceModal>
+                                </div>
+                                : ""
+                            }
+                            <p>{pollChoice.title}</p>
+                            <div>
+                                <VoteToPollChoiceButton poll={this.state.poll} refreshPoll={this.refreshPoll} pollChoice={pollChoice}></VoteToPollChoiceButton>
                             </div>
-                        ))}
-
-                        <p>Votes : {pollChoice?.users?.length}</p>
-
-                        <VoteToPollChoiceButton poll={this.state.poll} refreshPoll={this.refreshPoll} pollChoice={pollChoice}></VoteToPollChoiceButton>
-
-                    </div>
+                        </div>
+                        <div>
+                            <p>{pollChoice?.users?.length}</p>
+                        </div>
+                    </>
 
                 ))}
                 {this.state.id === this.props.post.author.id ?
-                    <CreatePollChoiceModal refreshPoll={this.refreshPoll} post={this.props.post}></CreatePollChoiceModal>
+                    <div className="mt-4">
+                        <CreatePollChoiceModal refreshPoll={this.refreshPoll} post={this.props.post}></CreatePollChoiceModal>
+                    </div>
                     : ""
                 }
             </div>

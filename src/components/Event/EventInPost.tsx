@@ -27,19 +27,23 @@ class EventInPost extends React.Component<any, any> {
         let participate;
         return (
             <div>
-                <h2>Event : </h2>
-                <p>Id : {this.state.event.id}</p>
-                <p>Title : {this.state.event.title}</p>
-                <p>Description : {this.state.event.description}</p>
-                <p>Owner : {this.state.event.owner?.id} - {this.state.event.owner?.name} </p>
-                <p>
-                    Members :
-                    {this.state.event?.members?.map((members:any) => (
-                        <span key={members.id}> User : {members.name} - </span>
-                    ))}
+                <h5>Event : </h5>
+                <h6>{this.state.event.title}</h6>
+                <p>{this.state.event.description}</p>
+                <p>Owner : {this.state.event.owner?.name} </p>
+                <p>{moment(this.state.event.startDate).format('DD/MM/YYYY')} - {moment(this.state.event.endDate).format('DD/MM/YYYY')}
                 </p>
-                <p>Start : {moment(this.state.event.startDate).format('DD/MM/YYYY')}</p>
-                <p>End : {moment(this.state.event.endDate).format('DD/MM/YYYY')}</p>
+
+                {this.state.event?.members?.length === 0 ?
+                    <p>No members yet</p>
+                    :
+                    <p>Members :</p>
+                }
+                <div className="pb-4">
+                    {this.state.event?.members?.map((members:any) => (
+                        <div key={members.id}>- {members.name}</div>
+                    ))}
+                </div>
 
                 {this.state.event?.members?.map((member:any) => {
                     if(this.props.id !== this.state.event?.owner?.id && member.id === this.props.id){

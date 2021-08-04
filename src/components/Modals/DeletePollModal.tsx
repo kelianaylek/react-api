@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useState} from "react";
 import Cookies from "js-cookie";
 import {Button, Form, Modal} from "react-bootstrap";
+import { HiOutlineMinusSm } from "react-icons/hi";
 
 const DeletePollModal = (props : {post :any, id :number, refreshPost :any}) => {
 
@@ -26,7 +27,7 @@ const DeletePollModal = (props : {post :any, id :number, refreshPost :any}) => {
         return (
             <>
                 <Button variant="danger" onClick={handleShow}>
-                    Remove Poll
+                    Poll <HiOutlineMinusSm></HiOutlineMinusSm>
                 </Button>
 
                 <Modal show={show} onHide={handleClose}>

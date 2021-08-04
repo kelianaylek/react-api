@@ -47,8 +47,11 @@ class LikeButton extends React.Component<any, any> {
                         isLiked = true
                     }
                 })}
-                <button className="btn btn-outline-danger" onClick={() => this.submit(isLiked)}>{isLiked ? <>{this.state.post?.likedBy.length}<HiOutlineThumbDown color="red"></HiOutlineThumbDown></>
-                    : <>{this.state.post?.likedBy.length} <HiOutlineThumbUp></HiOutlineThumbUp></>
+                <button className="btn btn-outline-danger" onClick={() => this.submit(isLiked)}>
+                    {isLiked ?
+                        <>{this.state.post?.likedBy.length}<HiOutlineThumbDown color="red"></HiOutlineThumbDown></>
+                            :
+                        <>{this.state.post?.likedBy?.length} <HiOutlineThumbUp></HiOutlineThumbUp></>
                 } </button>
 
             </div>

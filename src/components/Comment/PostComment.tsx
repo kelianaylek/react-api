@@ -30,8 +30,6 @@ const PostComment = (props : {post :any, getPost :any}) => {
 
     return (
         <form onSubmit={submit}>
-            <p className="fw-normal">Send comment</p>
-
             <div className="form-floating">
                 <input type="text" className="form-control" value={message} placeholder="Message" required onChange={e => setMessage(e.target.value)}/>
             </div>

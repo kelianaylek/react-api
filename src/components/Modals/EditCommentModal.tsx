@@ -27,7 +27,7 @@ const EditCommentModal = (props : {comment :any, id :any, refreshPost :any, post
 
     return (
         <>
-            <Button variant="warning" onClick={handleShow}>
+            <Button className="mr-2" variant="warning" onClick={handleShow}>
                 <HiOutlineCog></HiOutlineCog>
             </Button>
 

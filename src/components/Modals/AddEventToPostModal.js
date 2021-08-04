@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import {Button, Modal} from "react-bootstrap";
 import SearchEvent from "../Event/SearchBar";
 import EventList from "../Event/EventList";
+import { HiOutlinePlusSm} from "react-icons/hi";
 
 
 const AddEventToPostModal = ({post, event, id, refreshPost}) => {
@@ -39,7 +40,7 @@ const AddEventToPostModal = ({post, event, id, refreshPost}) => {
         return (
             <>
                 <Button variant="primary" onClick={handleShow}>
-                    Add event
+                    Event <HiOutlinePlusSm></HiOutlinePlusSm>
                 </Button>
 
                 <Modal show={show} onHide={handleClose}>

@@ -9,6 +9,10 @@ import AddEventToPostModal from "../../components/Modals/AddEventToPostModal";
 import RemoveEventFromPostModal from "../../components/Modals/RemoveEventFromPostModal";
 import moment from "moment";
 import {Link} from "react-router-dom";
+import {HiOutlineChevronLeft} from "react-icons/hi";
+import LeaveGroupModal from "../../components/Modals/LeaveGroupModal";
+import LikeButton from "../../components/Post/likeButton";
+import {Card} from "react-bootstrap";
 
 class Post extends React.Component {
     state = {
@@ -42,38 +46,63 @@ class Post extends React.Component {
     render() {
         return (
             <>
-                <Link to="/posts">Retour</Link>
-                <div>
-                    <p>Id : {this.state.activePost.id}</p>
-                    <p>Content : {this.state.activePost.content}</p>
-                    <p>Date : {moment(this.state.activePost.publishedAt).format('DD/MM/YYYY')}</p>
-                    <p>Image Link : {this.state.activePost.image}</p>
+                <div className="d-flex justify-content-between mt-4 ml-4 mr-4">
+                    <button className="btn btn-primary d-flex align-items-center">
+                        <HiOutlineChevronLeft></HiOutlineChevronLeft>
+                        <Link className="text-white" to="/posts">Retour</Link>
+                    </button>
+                </div>
 
-                    <GetComments refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></GetComments>
 
-                    <PostComment post={this.state.activePost} getPost={this.getPost}></PostComment>
+                <div className="d-flex justify-content-around pt-3">
+                    <div className="post">
+                        <Card style={{ width: '30rem', marginBottom : 10 }}>
+                            <Card.Body>
+                                <Card.Subtitle className="mb-2 text-muted">{this.state.activePost.content}</Card.Subtitle>
+                                <Card.Text>
+                                    {moment(this.state.activePost.publishedAt).format('DD/MM/YYYY')}
+                                </Card.Text>
+                                <div className="d-flex justify-content-around">
+                                    <div>
+                                        <CreatePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></CreatePollModal>
+                                        <DeletePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></DeletePollModal>
+                                    </div>
+                                    <div>
+                                        {this.state.activePost.event === null &&
+                                        <AddEventToPostModal refreshPost={this.refreshPost} post={this.state.activePost} event={this.state.activePost.event} id={this.props.location.state.id}></AddEventToPostModal>
+                                        }
+                                        {this.state.activePost.event !== null &&
+                                        <RemoveEventFromPostModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></RemoveEventFromPostModal>
+                                        }
+                                    </div>
+                                </div>
+                            </Card.Body>
+                        </Card>
 
-                    <br/><br/>
-                    <CreatePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></CreatePollModal>
-                    <br/>
-                    <DeletePollModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></DeletePollModal>
+                        {this.state.activePost.poll != null &&
+                            <Card style={{ width: '30rem', marginBottom : 10 }}>
+                                <Card.Body>
+                                    <Poll post={this.state.activePost} id={this.props.location.state.id}></Poll>
+                                </Card.Body>
+                            </Card>
+                        }
 
-                    {this.state.activePost.poll != null &&
-                    <Poll post={this.state.activePost} id={this.props.location.state.id}></Poll>
-                    }
+                        {this.state.activePost.event != null &&
+                        <Card style={{ width: '30rem', marginBottom : 10 }}>
+                            <Card.Body>
+                                <EventInPost event={this.state.activePost.event} id={this.props.location.state.id}></EventInPost>
+                            </Card.Body>
+                        </Card>
+                        }
+                    </div>
 
-                    <br/><br/>
-                    {this.state.activePost.event === null &&
-                    <AddEventToPostModal refreshPost={this.refreshPost} post={this.state.activePost} event={this.state.activePost.event} id={this.props.location.state.id}></AddEventToPostModal>
-                    }
+                    <div className="comment">
+                        <GetComments refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></GetComments>
+                        <PostComment post={this.state.activePost} getPost={this.getPost}></PostComment>
+                    </div>
 
-                    {this.state.activePost.event !== null &&
-                    <RemoveEventFromPostModal refreshPost={this.refreshPost} post={this.state.activePost} id={this.props.location.state.id}></RemoveEventFromPostModal>
-                    }
 
-                    {this.state.activePost.event != null &&
-                    <EventInPost event={this.state.activePost.event} id={this.props.location.state.id}></EventInPost>
-                    }
+
                 </div>
             </>
         );
