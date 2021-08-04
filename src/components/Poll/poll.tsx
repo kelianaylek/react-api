@@ -2,6 +2,7 @@ import React from 'react';
 import CreatePollChoiceModal from "../Modals/CreatePollChoiceModal";
 import DeletePollChoiceModal from "../Modals/DeletePollChoiceModal";
 import VoteToPollChoiceButton from './VoteToPollChoiceButton'
+import {ProgressBar} from "react-bootstrap";
 
 class Poll extends React.Component<any, any> {
    state = {
@@ -27,6 +28,12 @@ class Poll extends React.Component<any, any> {
 
 
     render() {
+
+       let totalVotes = 0
+        this.state.poll?.pollChoices?.map((pollChoice:any)=> {
+            totalVotes += pollChoice?.users?.length
+        })
+
         return (
             <div>
                 <h5>Poll :</h5>
@@ -51,8 +58,8 @@ class Poll extends React.Component<any, any> {
                                 <VoteToPollChoiceButton poll={this.state.poll} refreshPoll={this.refreshPoll} pollChoice={pollChoice}></VoteToPollChoiceButton>
                             </div>
                         </div>
-                        <div>
-                            <p>{pollChoice?.users?.length}</p>
+                        <div className="mb-2">
+                            <ProgressBar now={pollChoice?.users?.length / totalVotes * 100} label={`${pollChoice?.users?.length / totalVotes * 100}%`} />
                         </div>
                     </>
 
